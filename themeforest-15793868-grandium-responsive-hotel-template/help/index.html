@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Grandium - Responsive Hotel Template Documentation</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<link href="assets/css/reset.css" rel="stylesheet" type="text/css">
+<link href="assets/css/style.css" rel="stylesheet" type="text/css">
+<link href="assets/css/jquery.snippet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.smooth-scroll.js"></script>
+<script type="text/javascript" src="assets/js/jquery.snippet.js"></script>
+<script type="text/javascript" src="assets/js/default.js"></script>
+</head>
+<body>
+<div class="pageTop">
+	<h1>Grandium - Responsive Hotel Template Documentation<span class="version">v1.0</span></h1>
+	<ul class="nav clearfix">
+		<li><a href="http://www.locotheme.com/grandium-html/" target="_blank">Live Demo</a></li>
+		<li><a href="http://themeforest.net/user/locotheme/portfolio/" target="_blank">Other Themes</a></li>
+	</ul>
+</div>
+<div class="pageMenu">
+	<div class="menuLogo"><a href="#page1"><img src="assets/img/logo.png" alt="Loco Theme"></a></div>
+	<div class="menuNav">
+		<ul>
+			<li><a href="#page1" class="active">Start</a></li>
+			<li><a href="#page2">HTML Structure</a></li>
+			<li><a href="#page3">CSS Files and Structure</a></li>
+			<li><a href="#page4">JavaScript</a></li>
+			<li><a href="#page5">Tips</a></li>
+			<li><a href="#page6">Sources and Credits</a></li>
+			<li><a href="#page7">Support</a></li>
+		</ul>
+	</div>
+</div>
+<div class="pageContent">
+	<div class="section" id="page1">
+		<h2>Start</h2>
+		<p>Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/locotheme" target="_blank">here.</a> Thanks so much!</p>
+		<ul class="default">
+			<li>Created: 14/04/2016</li>
+			<li>By: Loco Theme</li>
+			<li>Email: <a href="mailto:support@locotheme.com">support@locotheme.com</a></li>
+		</ul>
+	</div>
+	<div class="section" id="page2">
+		<h2>HTML Structure</h2>
+		<p>This theme is a responsive layout based on Bootstrap. Here below an example of the homepage.</p>
+		<p>The general template structure is the same throughout the template. Here is the general structure.</p>
+<pre class="htmlCode">
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;!-- Site Loading --&gt;
+&lt;div class="site-loading"&gt;...&lt;/div&gt;
+&lt;!-- Site Loading End --&gt;
+
+&lt;!-- Site Back Top --&gt;
+&lt;div class="site-backtop" title="Back to top"&gt;...&lt;/div&gt;
+&lt;!-- Site Back Top End --&gt;
+
+&lt;!-- Site Header --&gt;
+&lt;div class="site-header"&gt;...&lt;/div&gt;
+&lt;!-- Site Header End --&gt;
+
+&lt;!-- Site Main --&gt;
+&lt;div class="site-main"&gt;
+    &lt;div class="section"&gt;...&lt;/div&gt;
+    &lt;div class="section"&gt;...&lt;/div&gt;
+    &lt;div class="section"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;!-- Site Main End --&gt;
+
+&lt;!-- Site Footer --&gt;
+&lt;div class="site-footer"&gt;...&lt;/div&gt;
+&lt;!-- Site Footer End --&gt;
+
+&lt;!-- Scripts --&gt;
+&lt;script src="assets/js/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/jquery-ui.min.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/jquery.fitvids.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/bootstrap.min.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/magnific.popup.min.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/imagesloaded.pkgd.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/isotope.pkgd.min.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/owl.carousel.min.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/booking.form.js"&gt;&lt;/script&gt;
+&lt;script src="assets/js/contact.form.js"&gt;&lt;/script&gt;
+
+&lt;!-- Map Scripts --&gt;
+&lt;script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"&gt;&lt;/script&gt;
+&lt;script src="assets/js/gmap3.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- Custom Scripts --&gt;
+&lt;script src="assets/js/custom.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>	
+	</div>
+	<div class="section" id="page3">
+		<h2>CSS Files and Structure</h2>
+		<p>This theme imports 8 CSS files.</p>
+		<h3>Main CSS file - style.css</h3>
+		<ul class="default">
+			<li>01 - Basic Stylesheet</li>
+			<li>02 - General Stylesheet</li>
+			<li>03 - Layout Stylesheet</li>
+		</ul>
+		<h3>Responsive CSS file - responsive.css</h3>
+		<ul class="default">
+            <li>01 - Max 1199px</li>
+            <li>02 - Max 991px</li>
+            <li>03 - Max 767px</li>
+            <li>04 - Min 1200px</li>
+            <li>05 - Min 992px</li>
+            <li>06 - Min 768px</li>
+		</ul>
+		<h3>Other CSS files</h3>
+		<ul class="default">
+			<li>01 - bootstrap.min.css (Bootstrap Stylesheet)</li>
+			<li>02 - font.awesome.min.css (Font Awesome Stylesheet)</li>
+            <li>03 - magnific.popup.css (Magnific Popup Stylesheet)</li>
+            <li>04 - owl.carousel.css (owl Carousel Stylesheet)</li>
+			<li>05 - owl.theme.default.css (owl Carousel Theme Stylesheet)</li>
+			<li>06 - jquery-ui.css (jQuery UI Stylesheet)</li>
+		</ul>
+	</div>
+	<div class="section" id="page4">
+		<h2>JavaScript</h2>
+		<p>This theme imports 13 Javascript files.</p>
+		<ul class="default">
+			<li>01 - jquery.min.js <a href="http://jquery.com/" target="_blank">(jQuery Library)</a></li>
+            <li>02 - jquery.ui.min.js <a href="https://jqueryui.com/" target="_blank">(jQuery UI Library)</a></li>
+            <li>03 - jquery.fitvids.js <a href="http://fitvidsjs.com/" target="_blank">(fitVids Library)</a></li>
+            <li>04 - bootstrap.min.js <a href="http://getbootstrap.com/" target="_blank">(Bootstrap Library)</a></li>
+            <li>05 - magnific.popup.min.js <a href="http://dimsemenov.com/plugins/magnific-popup/" target="_blank">(Magnific Popup Library)</a></li>
+			<li>06 - imagesloaded.pkgd.js <a href="https://github.com/desandro/imagesloaded" target="_blank">(imagesloaded Library)</a></li>
+            <li>07 - isotope.pkgd.min.js <a href="http://isotope.metafizzy.co/" target="_blank">(Isotope Library)</a></li>
+            <li>08 - owl.carousel.min.js <a href="http://owlcarousel2.github.io/OwlCarousel2/" target="_blank">(owl Carousel Library)</a></li>
+            <li>09 - booking.form.js <a href="https://github.com/pinceladasdaweb/Ajax-Contact-Form" target="_blank">(Booking Form Library)</a></li>
+            <li>10 - contact.form.js <a href="https://github.com/pinceladasdaweb/Ajax-Contact-Form" target="_blank">(Contact Form Library)</a></li>
+            <li>11 - http://maps.google.com/maps/api/js?sensor=false&amp;language=en <a href="https://developers.google.com/maps/" target="_blank">(Google Map Library)</a></li>
+			<li>12 - gmap3.min.js <a href="http://gmap3.net/" target="_blank">(GMAP3 Library)</a></li>
+            <li>13 - custom.js (Custom Scripts)</li>
+		</ul>
+	</div>
+	<div class="section" id="page5">
+		<h2>Tips</h2>
+
+		<p><b>Contact Form Options</b></p>
+		<p>Under the <b>'contact.php'</b> file look for the following:</p>
+<pre class="htmlCode">
+&lt;?php
+// Configure your Subject Prefix and Recipient here
+$subjectPrefix = '[Contact via website]';
+$emailTo       = 'your@mailaddress.com';
+?&gt;
+</pre>
+        
+		<p><b>Booking Form Options</b></p>
+		<p>Under the <b>'booking.php'</b> file look for the following:</p>
+<pre class="htmlCode">
+&lt;?php
+// Configure your Subject Prefix and Recipient here
+$subjectPrefix = '[Booking via website]';
+$emailTo       = 'your@mailaddress.com';
+?&gt;
+</pre>
+        
+		<p><b>Header Menu Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- HEADER MENU --*/
+$(".site-header .header-nav li.sub > a").on("click", function (e) {...});
+/*-- HEADER MENU --*/
+</pre>
+
+		<p><b>Popup Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- MAGNIFIC POPUP --*/
+if ($(".popup-photo").length) {}
+if ($(".popup-gallery").length) {}
+if ($(".popup-video").length) {}
+/*-- MAGNIFIC POPUP --*/
+</pre>
+        
+		<p><b>Full Screen Slider Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET SLIDER --*/
+if ($(".widget-slider").length) {}
+/*-- WIDGET SLIDER END --*/
+</pre>
+
+        <p><b>Gallery Grid Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET GALLERY GRID --*/
+if ($(".widget-gallery-grid").length) {}
+/*-- WIDGET GALLERY GRID END --*/
+</pre>
+        
+        <p><b>Gallery Carousel Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET GALLERY CAROUSEL --*/
+if ($(".widget-gallery-carousel").length) {}
+/*-- WIDGET GALLERY CAROUSEL END --*/
+</pre>
+        
+        <p><b>Rooms Carousel Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET ROOMS CAROUSEL --*/
+if ($(".widget-rooms-carousel").length) {}
+/*-- WIDGET ROOMS CAROUSEL END --*/
+</pre>
+        
+        <p><b>Rooms Detail Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET ROOMS DETAIL --*/
+if ($(".widget-rooms-detail").length) {}
+/*-- WIDGET ROOMS DETAIL END --*/
+</pre>
+        
+        <p><b>Blog List Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET BLOG LIST --*/
+if ($(".widget-blog-list").length) {}
+/*-- WIDGET BLOG LIST END --*/
+</pre>
+        
+        <p><b>Blog Carousel Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET BLOG CAROUSEL --*/
+if ($(".widget-blog-carousel").length) {}
+/*-- WIDGET BLOG CAROUSEL END --*/
+</pre>
+        
+        <p><b>Blog Single Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET BLOG SINGLE --*/
+if ($(".widget-blog-single").length) {}
+/*-- WIDGET BLOG SINGLE END --*/
+</pre>
+        
+        <p><b>Testimonials Carousel Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET TESTIMONIALS CAROUSEL --*/
+if ($(".widget-testimonials-carousel").length) {}
+/*-- WIDGET TESTIMONIALS CAROUSEL END --*/
+</pre>
+        
+        <p><b>Features Carousel Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET FEATURES CAROUSEL --*/
+if ($(".widget-features-carousel").length) {}
+/*-- WIDGET FEATURES CAROUSEL END --*/
+</pre>
+        
+        <p><b>Team Carousel Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET TEAM CAROUSEL --*/
+if ($(".widget-team-carousel").length) {}
+/*-- WIDGET TEAM CAROUSEL END --*/
+</pre>
+        
+        <p><b>Google Map Options</b></p>
+		<p>Under the <b>'custom.js'</b> file look for the following:</p>
+<pre class="js">
+/*-- WIDGET GOOGLE MAP --*/
+if ($(".widget-google-map").length) {}
+/*-- WIDGET GOOGLE MAP END --*/        
+</pre>    
+	</div>
+	<div class="section" id="page6">
+		<h2>Sources and Credits</h2>
+		<p>I've used the following images, icons or other files as listed.</p>
+		<h3>Fonts</h3>
+		<ul class="default">
+            <li><a href="https://www.google.com/fonts/specimen/Playfair+Display" target="_blank">Google Web Fonts – Playfair Display</a></li>
+            <li><a href="https://www.google.com/fonts/specimen/Lato" target="_blank">Google Web Fonts – Lato</a></li>
+            <li><a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a></li>
+		</ul>
+		
+		<h3>Photos</h3>
+		<ul class="default">
+            <li><a href="http://www.unsplash.com/" target="_blank">http://www.unsplash.com</a></li>
+            <li><a href="http://www.imcreator.com/free" target="_blank">http://www.imcreator.com/free</a></li>
+            <li><a href="http://www.flaticon.com/" target="_blank">http://www.flaticon.com</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/15038678723" target="_blank">https://www.flickr.com/photos/portobaytrade/15038678723</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/3541918795" target="_blank">https://www.flickr.com/photos/portobaytrade/3541918795</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/9200033190" target="_blank">https://www.flickr.com/photos/portobaytrade/9200033190</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/14226989480" target="_blank">https://www.flickr.com/photos/portobaytrade/14226989480</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/3545241461" target="_blank">https://www.flickr.com/photos/portobaytrade/3545241461</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/15540000060" target="_blank">https://www.flickr.com/photos/portobaytrade/15540000060</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/14412279732" target="_blank">https://www.flickr.com/photos/portobaytrade/14412279732</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/3545199183" target="_blank">https://www.flickr.com/photos/portobaytrade/3545199183</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/3541831037" target="_blank">https://www.flickr.com/photos/portobaytrade/3541831037</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/15659620792" target="_blank">https://www.flickr.com/photos/portobaytrade/15659620792</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/15533291327" target="_blank">https://www.flickr.com/photos/portobaytrade/15533291327</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/4626693276" target="_blank">https://www.flickr.com/photos/portobaytrade/4626693276</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/16527650853" target="_blank">https://www.flickr.com/photos/portobaytrade/16527650853</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/4724017622" target="_blank">https://www.flickr.com/photos/portobaytrade/4724017622</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/5536680023" target="_blank">https://www.flickr.com/photos/portobaytrade/5536680023</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/15656149631" target="_blank">https://www.flickr.com/photos/portobaytrade/15656149631</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/5515343788" target="_blank">https://www.flickr.com/photos/portobaytrade/5515343788</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/4626080855" target="_blank">https://www.flickr.com/photos/portobaytrade/4626080855</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/5514170609" target="_blank">https://www.flickr.com/photos/portobaytrade/5514170609</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/16039588514" target="_blank">https://www.flickr.com/photos/portobaytrade/16039588514</a></li>
+            <li><a href="https://www.flickr.com/photos/portobaytrade/15038075033" target="_blank">https://www.flickr.com/photos/portobaytrade/15038075033</a></li>
+            
+		</ul>
+		
+		<h3>Sources</h3>
+		<ul class="default">
+			<li><a href="http://jquery.com/" target="_blank">jQuery</a></li>
+			<li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+            <li><a href="http://getbootstrap.com/" target="_blank">Bootstrap</a></li>
+            <li><a href="http://owlcarousel2.github.io/OwlCarousel2/" target="_blank">Owl Carousel</a></li>
+            <li><a href="http://fitvidsjs.com/" target="_blank">FitVids.JS</a></li>
+            <li><a href="http://github.com/dimsemenov/Magnific-Popup/" target="_blank">Magnific Popup</a></li>
+            <li><a href="http://github.com/desandro/imagesloaded" target="_blank">imagesLoaded</a></li>
+            <li><a href="http://isotope.metafizzy.co/" target="_blank">Isotope</a></li>
+            <li><a href="http://github.com/pinceladasdaweb/Ajax-Contact-Form/" target="_blank">Contact Form</a></li>
+            <li><a href="http://github.com/pinceladasdaweb/Ajax-Contact-Form/" target="_blank">Booking Form</a></li>
+            <li><a href="http://developers.google.com/maps/" target="_blank">Google Map Api</a></li>
+            <li><a href="http://gmap3.net/" target="_blank">Gmap3</a></li>
+		</ul>
+	</div>
+	<div class="section" id="page7">
+		<h2>Support</h2>
+		<p>If you need support, please send me an email using the contact form on <a href="http://themeforest.net/user/locotheme/" target="_blank">my profile page</a>.</p>
+		<p>Please include the template name, website URL and detailed information about your problem.</p>
+		<p>I usually respond to support requests within <strong>48 hours</strong> on weekdays. Support request sent during weekends/holidays will be processed on Monday/the next business day.</p>
+		<p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p>
+		<ul class="default">
+			<li><b>Loco Theme - We create awesome themes</b></li>
+			<li><a href="mailto:support@locotheme.com">support@locotheme.com</a></li>
+			<li><a href="http://www.locotheme.com/" target="_blank">www.locotheme.com</a></li>
+		</ul>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'jess_rooms' %}
+
+{% block main %}
+<!-- Site Main -->
+<div class="site-main">
+    <!-- Section Page Title -->
+    <div class="section">
+        <div class="widget-page-title">
+            <div class="widget-background" data-background="/assets/img/photo-title.jpg"></div>
+            <div class="wrapper-inner">
+                <!-- Title -->
+                <h5>OUR FACILITIES</h5>
+                <h1>Services Page</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices. Nunc et magna velit.</p>
+                <!-- Title End -->
+                <!-- Breadcrumb -->
+                <div class="widget-breadcrumb">
+                    <ul>
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">PAGES</a></li>
+                        <li>SERVICES PAGE</li>
+                    </ul>
+                </div>
+                <!-- Breadcrumb End -->
+            </div>
+        </div>
+    </div>
+    <!-- Section Page Title End -->
+
+    <!-- Section Services -->
+    <div class="section">
+        <div class="wrapper-inner">
+            <!-- Services List -->
+            <div class="widget-services-list">
+                {% for service in services %}
+                <div class="services-item">
+                    <div class="item-photo">
+                        <div class="photo-big" data-background="/assets/img/photo-services-1-1.jpg"></div>
+                        <div class="photo-small" data-background="/assets/img/photo-services-1-2.jpg"></div>
+                        <a href="#" class="btn btn-default">LEARN MORE</a>
+                    </div>
+                    <div class="item-desc">
+                        <h5>OUR FACILITIES</h5>
+                        <h2>{{ service.name }}</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem.</p>
+                        <p>Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices.</p>
+                    </div>
+                </div>
+                {% endfor %}
+                {# <div class="services-item">
+                    <div class="item-photo">
+                        <div class="photo-big" data-background="/assets/img/photo-services-2-1.jpg"></div>
+                        <div class="photo-small" data-background="/assets/img/photo-services-2-2.jpg"></div>
+                        <a href="#" class="btn btn-default">LEARN MORE</a>
+                    </div>
+                    <div class="item-desc">
+                        <h5>OUR FACILITIES</h5>
+                        <h2>Private Dining</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem.</p>
+                        <p>Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices.</p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <div class="item-photo">
+                        <div class="photo-big" data-background="/assets/img/photo-services-3-1.jpg"></div>
+                        <div class="photo-small" data-background="/assets/img/photo-services-3-2.jpg"></div>
+                        <a href="#" class="btn btn-default">LEARN MORE</a>
+                    </div>
+                    <div class="item-desc">
+                        <h5>OUR FACILITIES</h5>
+                        <h2>Conference &amp; Events</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem.</p>
+                        <p>Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices.</p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <div class="item-photo">
+                        <div class="photo-big" data-background="/assets/img/photo-services-4-1.jpg"></div>
+                        <div class="photo-small" data-background="/assets/img/photo-services-4-2.jpg"></div>
+                        <a href="#" class="btn btn-default">LEARN MORE</a>
+                    </div>
+                    <div class="item-desc">
+                        <h5>OUR FACILITIES</h5>
+                        <h2>Wedding Venue</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem.</p>
+                        <p>Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices.</p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <div class="item-photo">
+                        <div class="photo-big" data-background="/assets/img/photo-services-5-1.jpg"></div>
+                        <div class="photo-small" data-background="/assets/img/photo-services-5-2.jpg"></div>
+                        <a href="#" class="btn btn-default">LEARN MORE</a>
+                    </div>
+                    <div class="item-desc">
+                        <h5>OUR FACILITIES</h5>
+                        <h2>Spa &amp; Beauty Center</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem.</p>
+                        <p>Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices.</p>
+                    </div>
+                </div>
+                <div class="services-item">
+                    <div class="item-photo">
+                        <div class="photo-big" data-background="/assets/img/photo-services-6-1.jpg"></div>
+                        <div class="photo-small" data-background="/assets/img/photo-services-6-2.jpg"></div>
+                        <a href="#" class="btn btn-default">LEARN MORE</a>
+                    </div>
+                    <div class="item-desc">
+                        <h5>OUR FACILITIES</h5>
+                        <h2>Swimming Pool</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem.</p>
+                        <p>Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices.</p>
+                    </div>
+                </div> #}
+            </div>
+            <!-- Services List End -->
+        </div>
+    </div>
+    <!-- Section Services End -->
+</div>
+<!-- Site Main End -->
+{% endblock %}

@@ -1,0 +1,104 @@
+---------------------------------------
+/*----Fonts----*/
+---------------------------------------
+Playfair Display
+SIL Open Font License, 1.1
+http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+---------------------------------------
+Lato
+SIL Open Font License, 1.1
+http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+---------------------------------------
+Font Awesome
+SIL OFL 1.1, MIT License, CC BY 3.0
+http://fortawesome.github.io/Font-Awesome/license/
+---------------------------------------
+/*----Photos----*/
+---------------------------------------
+Unsplash
+CC0 1.0 Universal (CC0 1.0)
+http://creativecommons.org/publicdomain/zero/1.0/
+---------------------------------------
+IM Creator
+Attribution 2.0 Generic (CC BY 2.0)
+http://creativecommons.org/licenses/by/2.0/
+
+Flat Icon
+Free License
+https://profile.flaticon.com/license/free
+
+Flickr
+Attribution 2.0 Generic (CC BY 2.0)
+http://creativecommons.org/licenses/by/2.0/
+https://www.flickr.com/photos/portobaytrade/15038678723
+https://www.flickr.com/photos/portobaytrade/3541918795
+https://www.flickr.com/photos/portobaytrade/9200033190
+https://www.flickr.com/photos/portobaytrade/14226989480
+https://www.flickr.com/photos/portobaytrade/3545241461
+https://www.flickr.com/photos/portobaytrade/15540000060
+https://www.flickr.com/photos/portobaytrade/14412279732
+https://www.flickr.com/photos/portobaytrade/3545199183
+https://www.flickr.com/photos/portobaytrade/3541831037
+https://www.flickr.com/photos/portobaytrade/15659620792
+https://www.flickr.com/photos/portobaytrade/15533291327
+https://www.flickr.com/photos/portobaytrade/4626693276
+https://www.flickr.com/photos/portobaytrade/16527650853
+https://www.flickr.com/photos/portobaytrade/4724017622
+https://www.flickr.com/photos/portobaytrade/5536680023
+https://www.flickr.com/photos/portobaytrade/15656149631
+https://www.flickr.com/photos/portobaytrade/5515343788
+https://www.flickr.com/photos/portobaytrade/4626080855
+https://www.flickr.com/photos/portobaytrade/5514170609
+https://www.flickr.com/photos/portobaytrade/16039588514
+https://www.flickr.com/photos/portobaytrade/15038075033
+---------------------------------------
+/*----Sources----*/
+---------------------------------------
+jQuery
+MIT License
+https://tldrlegal.com/license/mit-license
+---------------------------------------
+jQuery UI
+MIT License
+https://tldrlegal.com/license/mit-license
+---------------------------------------
+Bootstrap
+MIT License
+https://github.com/twbs/bootstrap/blob/master/LICENSE
+---------------------------------------
+Owl Carousel
+License
+https://github.com/OwlCarousel2/OwlCarousel2/blob/develop/LICENSE
+---------------------------------------
+FitVids.JS
+WTFPL license
+http://www.wtfpl.net/
+---------------------------------------
+Magnific-Popup
+MIT License
+https://github.com/dimsemenov/Magnific-Popup/blob/master/LICENSE
+---------------------------------------
+ImagesLoaded
+MIT License
+http://desandro.mit-license.org/
+---------------------------------------
+Isotope
+Commercial License
+http://isotope.metafizzy.co/license.html
+---------------------------------------
+Contact Form
+MIT License
+https://github.com/pinceladasdaweb/Ajax-Contact-Form/blob/master/LICENSE
+---------------------------------------
+Booking Form
+MIT License
+https://github.com/pinceladasdaweb/Ajax-Contact-Form/blob/master/LICENSE
+---------------------------------------
+Google Map Api
+Attribution 3.0 Unported (CC BY 3.0)
+http://creativecommons.org/licenses/by/3.0/
+---------------------------------------
+Gmap3
+GPL v3
+http://www.gnu.org/licenses/gpl.html
+---------------------------------------
