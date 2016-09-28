@@ -49,3 +49,4 @@ Temporary Items
 /var/cache/prod/
 /var/logs/
 /var/sessions/
+*.data

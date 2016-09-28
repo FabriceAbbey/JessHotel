@@ -40,7 +40,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/rooms/{page}", name="hotel_rooms", defaults={"page" = 1}))
+     * @Route("/rooms/", name="hotel_rooms", defaults={"page" = 1}))
      * @Route("/rooms/{page}/", name="hotel_rooms_paginated", requirements={"page" : "\d+"})
      */
     public function roomsAction($page)
@@ -60,7 +60,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/room/{id}", name="hotel_room_detail", requirements={"id" : "\d+"})
+     * @Route("/room/{id}/", name="hotel_room_detail", requirements={"id" : "\d+"})
      */
     public function roomDetailAction($id)
     {

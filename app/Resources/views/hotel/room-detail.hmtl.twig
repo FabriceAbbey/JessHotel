@@ -12,15 +12,14 @@
             <div class="wrapper-inner">
                 <!-- Title -->
                 <h5>EXPERIENCE THE FREEDOM</h5>
-                <h1>Single Room</h1>
+                <h1>{{room.name}}</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices. Nunc et magna velit.</p>
                 <!-- Title End -->
                 <!-- Breadcrumb -->
                 <div class="widget-breadcrumb">
                     <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#">PAGES</a></li>
-                        <li><a href="#">ROOMS</a></li>
+                        <li><a href="{{ path("hotel_index") }}">HOME</a></li>
+                        <li><a href="{{ path("hotel_rooms") }}">ROOMS</a></li>
                         <li>{{ room.name }}</li>
                     </ul>
                 </div>
