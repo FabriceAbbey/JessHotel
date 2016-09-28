@@ -15,15 +15,15 @@
 #}
 
 {% if pageCount > 1 %}
-    <ul class="pagination">
+    <ul >
 
     {% if previous is defined %}
         <li>
-            <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ 'Previous'|trans }}</a>
+            <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&laquo;&nbsp;{{ ''|trans }}</a>
         </li>
     {% else %}
         <li class="disabled">
-            <span>&laquo;&nbsp;{{ 'Previous'|trans }}</span>
+            <a>&laquo;&nbsp;{{ ''|trans }}</a>
         </li>
     {% endif %}
 
@@ -37,7 +37,7 @@
             </li>
         {% elseif startPage != 2 %}
         <li class="disabled">
-            <span>&hellip;</span>
+            <a>&hellip;</a>
         </li>
         {% endif %}
     {% endif %}
@@ -49,7 +49,7 @@
             </li>
         {% else %}
             <li class="active">
-                <span>{{ page }}</span>
+                <a>{{ page }}</a>
             </li>
         {% endif %}
 
@@ -59,7 +59,7 @@
         {% if pageCount > (endPage + 1) %}
             {% if pageCount > (endPage + 2) %}
                 <li class="disabled">
-                    <span>&hellip;</span>
+                    <a>&hellip;</a>
                 </li>
             {% else %}
                 <li>
@@ -74,11 +74,11 @@
 
     {% if next is defined %}
         <li>
-            <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ 'Next'|trans }}&nbsp;&raquo;</a>
+            <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}">{{ ''|trans }}&nbsp;&raquo;</a>
         </li>
     {% else %}
         <li class="disabled">
-            <span>{{ 'Next'|trans }}&nbsp;&raquo;</span>
+            <a>{{ ''|trans }}&nbsp;&raquo;</a>
         </li>
     {% endif %}
     </ul>

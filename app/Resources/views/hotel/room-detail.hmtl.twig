@@ -21,7 +21,7 @@
                         <li><a href="#">HOME</a></li>
                         <li><a href="#">PAGES</a></li>
                         <li><a href="#">ROOMS</a></li>
-                        <li>SINGLE ROOM</li>
+                        <li>{{ room.name }}</li>
                     </ul>
                 </div>
                 <!-- Breadcrumb End -->
@@ -39,24 +39,20 @@
                         <div class="col-md-8">
                             <!-- Room Slider -->
                             <div class="room-slider">
-                                <div class="room-price">$ 160.00 <small>PER NIGHT</small></div>
+                                <div class="room-price">{{ room.price }}<small>PER NIGHT</small></div>
                                 <div class="owl-carousel owl-theme owl-type1">
-                                    <a href="/assets/img/photo-room-detail-5.jpg" data-background="/assets/img/photo-room-detail-5.jpg" title="Single Room" class="popup-gallery"></a>
-                                    <a href="/assets/img/photo-room-detail-4.jpg" data-background="/assets/img/photo-room-detail-4.jpg" title="Single Room" class="popup-gallery"></a>
-                                    <a href="/assets/img/photo-room-detail-3.jpg" data-background="/assets/img/photo-room-detail-3.jpg" title="Single Room" class="popup-gallery"></a>
-                                    <a href="/assets/img/photo-room-detail-2.jpg" data-background="/assets/img/photo-room-detail-2.jpg" title="Single Room" class="popup-gallery"></a>
-                                    <a href="/assets/img/photo-room-detail-1.jpg" data-background="/assets/img/photo-room-detail-1.jpg" title="Single Room" class="popup-gallery"></a>
+                                    {% for pic in room.pictures %}
+                                    <a href="{{ pic }}" data-background="{{ pic }}" title="{{ room.name }}" class="popup-gallery"></a>
+                                    {% endfor %}
+                                    
                                 </div>
                             </div>
                             <!-- Room Slider End -->
                             <!-- Room Thumbnails -->
                             <div class="room-thumbnails">
                                 <div class="owl-carousel">
-                                    <a href="#" data-background="/assets/img/photo-room-detail-5.jpg" title="Single Room"></a>
-                                    <a href="#" data-background="/assets/img/photo-room-detail-4.jpg" title="Single Room"></a>
-                                    <a href="#" data-background="/assets/img/photo-room-detail-3.jpg" title="Single Room"></a>
-                                    <a href="#" data-background="/assets/img/photo-room-detail-2.jpg" title="Single Room"></a>
-                                    <a href="#" data-background="/assets/img/photo-room-detail-1.jpg" title="Single Room"></a>
+                                    {% for pic in room.pictures %}
+                                    <a href="#" data-background="{{ pic }}" title="{{ room.name }}"></a>                                    {% endfor %}
                                 </div>
                             </div>
                             <!-- Room Thumbnails End -->
@@ -123,15 +119,9 @@
                                 <h5>FEATURES</h5>
                                 <h2>Room Features</h2>
                                 <ul>
-                                    <li><i class="fa fa-check"></i> BREAKFAST</li>
-                                    <li><i class="fa fa-check"></i> WI-FI</li>
-                                    <li><i class="fa fa-check"></i> HAIR DRYER</li>
-                                    <li><i class="fa fa-check"></i> LCD TV</li>
-                                    <li><i class="fa fa-check"></i> SHOWER AND TAB</li>
-                                    <li><i class="fa fa-check"></i> SECURITY SYSTEM</li>
-                                    <li><i class="fa fa-check"></i> AIR CONDITIONING</li>
-                                    <li><i class="fa fa-check"></i> MINI BAR</li>
-                                    <li><i class="fa fa-check"></i> TEA AND COFFEE SET</li>
+                                    {% for item in room.amenities %}
+                                    <li><i class="fa fa-check"></i>{{ item }}</li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <!-- Room Features End -->

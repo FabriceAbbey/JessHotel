@@ -37,10 +37,10 @@
                 {% for room in rooms %}
                 <div class="rooms-item">
                     <div class="item-photo">
-                        <a href="/room/{{room.id}}" data-background="/assets/img/photo-room-1.jpg"></a>
+                        <a href="{{path('hotel_room_detail', {'id': room.id}) }}" data-background="/assets/img/photo-room-1.jpg"></a>
                     </div>
                     <div class="item-desc">
-                        <h2><a href="/room/{{room.id}}">{{room.name}}</a></h2>
+                        <h2><a href="{{path('hotel_room_detail', {'id': room.id}) }}">{{room.name}}</a></h2>
                         <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
                         <div class="desc-features">
                             <ul>
@@ -64,7 +64,7 @@
                             <h3>$ {{room.price}}</h3>
                             <h4>$ 180.00</h4>
                             <h5>PER NIGHT</h5>
-                            <a href="/room/{{room.id}}" class="btn">ROOM DETAIL</a>
+                            <a href="{{path('hotel_room_detail', {'id': room.id}) }}" class="btn">ROOM DETAIL</a>
                         </div>
                     </div>
                 </div>
@@ -198,14 +198,14 @@
             <!-- Pager -->
             <div class="widget-pager">
                 
-                <ul >
+             {#   <ul >
             {% if page > 1 %}
                 <li><a href="/rooms/{{page}}/">1</a></li>
-{#                <li><a href="/rooms/{{page - 1}}/{{max_per_page}}/">«</a></li>#}
+{#                <li><a href="/rooms/{{page - 1}}/{{max_per_page}}/">«</a></li>
                 {% else %}            
                 <li class="disabled"><a href="">1</a></li>
-{#                <li class="disabled"><a>«</a></li>#}
-                {%endif%}
+{#                <li class="disabled"><a>«</a></li>
+                {%endif%}#}
 
             {#{% if page - 2 > 1 %}
                 <li class="disabled"><a>..</a></li>
@@ -230,7 +230,7 @@
                 <li class="disabled"><a>»</a></li>
                 <li class="disabled"><a href="/{{ zone }}/bug/list/{{total_pages}}/{{max_per_page}}/">Last</a></li>
                 {%endif%}
-#}
+
         </ul>
                {# <ul>
                     <li><a href="#">1</a></li>
@@ -238,6 +238,8 @@
                     <li><a href="#">3</a></li>
                     <li><a href="#">4</a></li>
                 </ul>#}
+            
+            {{ knp_pagination_render(rooms) }}
             </div>
             <!-- Pager End -->
         </div>

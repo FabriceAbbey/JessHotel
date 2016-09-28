@@ -40,13 +40,11 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/rooms/", name="hotel_rooms", defaults={"page" = 1}))
-     * @Route("/rooms/{page}", name="hotel_rooms_paginated", requirements={"page" : "\d+"})
+     * @Route("/rooms/{page}", name="hotel_rooms", defaults={"page" = 1}))
+     * @Route("/rooms/{page}/", name="hotel_rooms_paginated", requirements={"page" : "\d+"})
      */
-    public function roomsAction(Request $request)
+    public function roomsAction($page)
     {
-        print_r($request->query->get('page'));
-        exit();
         $em    = $this->get('doctrine.orm.entity_manager');
         $dql   = "SELECT a FROM AppBundle:Room a";
         $query = $em->createQuery($dql);
@@ -54,11 +52,11 @@ class BlogController extends Controller
         $paginator  = $this->get('knp_paginator');
         $rooms = $paginator->paginate(
         $query, /* query NOT result */
-        $request->query->getInt('page', 1)/*page number*/,
+        $page/*page number*/,
         Room::NUM_ITEMS/*limit per page*/
-    );
+        );
              
-        return $this->render('hotel/rooms.html.twig', array("rooms" => $rooms, "page" =>  $request->query->getInt('page')));
+        return $this->render('hotel/rooms.html.twig', array("rooms" => $rooms, "page" =>  $page));
     }
 
     /**
@@ -66,8 +64,9 @@ class BlogController extends Controller
      */
     public function roomDetailAction($id)
     {
+        $room = $this->getDoctrine()->getRepository('AppBundle:Room')->find($id);
         
-        return $this->render('hotel/room-detail.hmtl.twig');
+        return $this->render('hotel/room-detail.hmtl.twig', array('room' => $room));
     }
 
     /**
