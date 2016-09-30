@@ -35,6 +35,13 @@ class Customer
      * @ORM\Column(type="string")
      */
     private $lastname;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $adress;
+    
+    
 
 
     // *
