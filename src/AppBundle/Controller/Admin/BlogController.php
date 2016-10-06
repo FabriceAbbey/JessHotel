@@ -12,6 +12,7 @@
 namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Event;
 use AppBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,7 +29,7 @@ use Symfony\Component\HttpFoundation\Request;
  * existing bundles that let you generate ready-to-use backends without effort.
  * See http://knpbundles.com/keyword/admin
  *
- * @Route("/admin/")
+ * @Route("/admin")
  * @Security("has_role('ROLE_ADMIN')")
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
@@ -48,28 +49,29 @@ class BlogController extends Controller
      *     the route name and therefore, without breaking any existing link.
      *
      * @Route("/", name="admin_index")
-     * @Route("/", name="admin_post_index")
+     * @Route("/", name="admin_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $entityManager = $this->getDoctrine()->getManager();
         $posts = $entityManager->getRepository(Post::class)->findAll();
-
-        return $this->render('admin/blog/index.html.twig', ['posts' => $posts]);
+        $events = $entityManager->getRepository(Event::class)->findAll();
+        
+        return $this->render('admin/blog/index.html.twig', ['posts' => $posts, 'events' => $events]);
     }
 
     /**
      * Creates a new Post entity.
      *
-     * @Route("/new", name="admin_post_new")
+     * @Route("/post/new/", name="admin_post_new")
      * @Method({"GET", "POST"})
      *
      * NOTE: the Method annotation is optional, but it's a recommended practice
      * to constraint the HTTP methods each controller responds to (by default
      * it responds to all methods).
      */
-    public function newAction(Request $request)
+    public function newPostAction(Request $request)
     {
         $post = new Post();
         $post->setAuthorEmail($this->getUser()->getEmail());
@@ -106,6 +108,58 @@ class BlogController extends Controller
 
         return $this->render('admin/blog/new.html.twig', [
             'post' => $post,
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    
+     /**
+     * Creates a new Event entity.
+     *
+     * @Route("/event/new/", name="admin_event_new")
+     * @Method({"GET", "POST"})
+     *
+     * NOTE: the Method annotation is optional, but it's a recommended practice
+     * to constraint the HTTP methods each controller responds to (by default
+     * it responds to all methods).
+     */
+    public function newEventAction(Request $request)
+    {
+        $event = new Event();
+        $event->setAuthorEmail($this->getUser()->getEmail());
+
+        // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
+        $form = $this->createForm(PostType::class, $event)
+            ->add('saveAndCreateNew', SubmitType::class);
+
+        $form->handleRequest($request);
+
+        // the isSubmitted() method is completely optional because the other
+        // isValid() method already checks whether the form is submitted.
+        // However, we explicitly add it to improve code readability.
+        // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
+        if ($form->isSubmitted() && $form->isValid()) {
+            $event->setSlug($this->get('slugger')->slugify($event->getTitle()));
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($event);
+            $entityManager->flush();
+
+            // Flash messages are used to notify the user about the result of the
+            // actions. They are deleted automatically from the session as soon
+            // as they are accessed.
+            // See http://symfony.com/doc/current/book/controller.html#flash-messages
+            $this->addFlash('success', 'post.created_successfully');
+
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute('admin_event_new');
+            }
+
+            return $this->redirectToRoute('admin_post_index');
+        }
+
+        return $this->render('admin/blog/new.html.twig', [
+            'event' => $event,
             'form' => $form->createView(),
         ]);
     }

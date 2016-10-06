@@ -39,7 +39,7 @@ class Event
     /**
      * @ORM\Column(type="datetime")
      */
-    private $addedDate;
+    private $publishedAt;
     
        /**
      * @ORM\Column(type="datetime")
