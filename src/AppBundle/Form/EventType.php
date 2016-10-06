@@ -46,19 +46,21 @@ class EventType extends AbstractType
                 'attr' => ['autofocus' => true],
                 'label' => 'label.title',
             ])
-            ->add('summary', TextareaType::class, [
-                'label' => 'label.summary',
+            ->add('description', TextareaType::class, [
+                'label' => 'label.description',
             ])
-            ->add('content', null, [
-                'attr' => ['rows' => 20],
-                'label' => 'label.content',
-            ])
-            ->add('authorEmail', null, [
-                'label' => 'label.author_email',
+            ->add('scheduledDate', DateTimePickerType::class, [
+                'label' => 'label.published_at',
             ])
             ->add('publishedAt', DateTimePickerType::class, [
                 'label' => 'label.published_at',
             ])
+            ->add('images', 'file', array(
+                'attr' => array(
+                    'accept' => 'image/*',
+                    'multiple' => 'multiple'
+                )
+            ))
         ;
     }
 

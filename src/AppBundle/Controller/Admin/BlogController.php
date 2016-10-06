@@ -140,10 +140,30 @@ class BlogController extends Controller
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setSlug($this->get('slugger')->slugify($event->getTitle()));
+            
+            $files = $form->getData()->getImages();
+            
+             // If there are images uploaded           
+    if($files[0] != '') {
+        $constraints = array('maxSize'=>'1M', 'mimeTypes' => array('image/*'));
+        $uploadFiles = $this->get('your_namespace.fileuploader')->create($files, $constraints);
+    }
 
-            $entityManager = $this->getDoctrine()->getManager();
+    if($uploadFiles->upload()) {
+        $event->setImages($uploadFiles->getFilePaths());
+        $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($event);
             $entityManager->flush();
+    } else {
+        // If there are file constraint validation issues
+        foreach($uploadFiles->getErrors() as $error) {
+            $this->get('session')->getFlashBag()->add('error', $error);
+        }
+          return $this->render('admin/blog/new.html.twig', [
+            'event' => $event,
+            'form' => $form->createView(),
+        ]);
+    }
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon

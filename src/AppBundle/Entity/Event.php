@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
@@ -45,6 +46,13 @@ class Event
      * @ORM\Column(type="datetime")
      */
     private $scheduledDate;
+    
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="images", type="array", nullable=true)
+     */
+    private $images;
 
     // *
     //  * @ORM\Column(type="string")
@@ -213,5 +221,53 @@ class Event
     public function getScheduledDate()
     {
         return $this->scheduledDate;
+    }
+
+    /**
+     * Set publishedAt
+     *
+     * @param \DateTime $publishedAt
+     *
+     * @return Event
+     */
+    public function setPublishedAt($publishedAt)
+    {
+        $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get publishedAt
+     *
+     * @return \DateTime
+     */
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * Set images
+     *
+     * @param array $images
+     *
+     * @return Event
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return array
+     */
+    public function getImages()
+    {
+        return $this->images;
     }
 }
