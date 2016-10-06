@@ -28,7 +28,7 @@ use Symfony\Component\HttpFoundation\Request;
  * existing bundles that let you generate ready-to-use backends without effort.
  * See http://knpbundles.com/keyword/admin
  *
- * @Route("/admin/post")
+ * @Route("/admin/")
  * @Security("has_role('ROLE_ADMIN')")
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
