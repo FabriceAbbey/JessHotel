@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- * @ORM\Table(name="Event")
+ * @ORM\Table(name="event")
  *
  * Defines the properties of the User entity to represent the application users.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -37,9 +37,14 @@ class Event
     private $description;
     
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="datetime")
      */
-    private $description;
+    private $addedDate;
+    
+       /**
+     * @ORM\Column(type="datetime")
+     */
+    private $scheduledDate;
 
     // *
     //  * @ORM\Column(type="string")
@@ -112,5 +117,101 @@ class Event
     public function getLastname()
     {
         return $this->lastname;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Event
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Event
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set addedDate
+     *
+     * @param \DateTime $addedDate
+     *
+     * @return Event
+     */
+    public function setAddedDate($addedDate)
+    {
+        $this->addedDate = $addedDate;
+
+        return $this;
+    }
+
+    /**
+     * Get addedDate
+     *
+     * @return \DateTime
+     */
+    public function getAddedDate()
+    {
+        return $this->addedDate;
+    }
+
+    /**
+     * Set scheduledDate
+     *
+     * @param \DateTime $scheduledDate
+     *
+     * @return Event
+     */
+    public function setScheduledDate($scheduledDate)
+    {
+        $this->scheduledDate = $scheduledDate;
+
+        return $this;
+    }
+
+    /**
+     * Get scheduledDate
+     *
+     * @return \DateTime
+     */
+    public function getScheduledDate()
+    {
+        return $this->scheduledDate;
     }
 }

@@ -116,4 +116,28 @@ class Customer
     {
         return $this->lastname;
     }
+
+    /**
+     * Set adress
+     *
+     * @param string $adress
+     *
+     * @return Customer
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
 }
