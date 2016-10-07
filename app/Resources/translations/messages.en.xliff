@@ -129,6 +129,10 @@
                 <source>label.delete_post</source>
                 <target>Delete post</target>
             </trans-unit>
+             <trans-unit id="label.delete_event">
+                <source>label.delete_event</source>
+                <target>Delete event</target>
+            </trans-unit>
             <trans-unit id="label.cancel">
                 <source>label.cancel</source>
                 <target>Cancel</target>
@@ -140,6 +144,10 @@
             <trans-unit id="label.create_post">
                 <source>label.create_post</source>
                 <target>Create post</target>
+            </trans-unit>
+            <trans-unit id="label.create_event">
+                <source>label.create_event</source>
+                <target>Create event</target>
             </trans-unit>
             <trans-unit id="label.save_and_create_new">
                 <source>label.save_and_create_new</source>
@@ -210,6 +218,15 @@
                 <source>title.post_new</source>
                 <target>Post creation</target>
             </trans-unit>
+             <trans-unit id="title.event_new">
+                <source>title.event_new</source>
+                <target>Event creation</target>
+            </trans-unit>
+            
+             <trans-unit id="label.description">
+                <source>label.description</source>
+                <target>Description</target>
+            </trans-unit>
             <trans-unit id="action.edit_contents">
                 <source>action.edit_contents</source>
                 <target>Edit contents</target>
@@ -255,6 +272,10 @@
             <trans-unit id="post.no_posts_found">
                 <source>post.no_posts_found</source>
                 <target>No posts found.</target>
+            </trans-unit>
+             <trans-unit id="event.no_event_found">
+                <source>event.no_event_found</source>
+                <target>No events found.</target>
             </trans-unit>
             <trans-unit id="post.created_successfully">
                 <source>post.created_successfully</source>

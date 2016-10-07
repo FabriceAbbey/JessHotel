@@ -60,6 +60,7 @@ class ComposerStaticInitfe11ff6b82a996417f83b4f9122e5007
         ),
         'K' => 
         array (
+            'Knp\\Bundle\\SnappyBundle\\' => 24,
             'Knp\\Bundle\\PaginatorBundle\\' => 27,
         ),
         'I' => 
@@ -174,6 +175,10 @@ class ComposerStaticInitfe11ff6b82a996417f83b4f9122e5007
         array (
             0 => __DIR__ . '/..' . '/leafo/scssphp/src',
         ),
+        'Knp\\Bundle\\SnappyBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+        ),
         'Knp\\Bundle\\PaginatorBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-paginator-bundle',
@@ -244,6 +249,10 @@ class ComposerStaticInitfe11ff6b82a996417f83b4f9122e5007
         ),
         'K' => 
         array (
+            'Knp\\Snappy' => 
+            array (
+                0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src',
+            ),
             'Knp\\Component' => 
             array (
                 0 => __DIR__ . '/..' . '/knplabs/knp-components/src',

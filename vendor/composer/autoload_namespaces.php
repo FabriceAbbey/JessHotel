@@ -11,6 +11,7 @@ return array(
     'SensioLabs\\Security' => array($vendorDir . '/sensiolabs/security-checker'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'Pagerfanta\\' => array($vendorDir . '/pagerfanta/pagerfanta/src'),
+    'Knp\\Snappy' => array($vendorDir . '/knplabs/knp-snappy/src'),
     'Knp\\Component' => array($vendorDir . '/knplabs/knp-components/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'Doctrine\\ORM\\' => array($vendorDir . '/doctrine/orm/lib'),

@@ -7,7 +7,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
  * @ORM\Table(name="event")
  *
  * Defines the properties of the User entity to represent the application users.
@@ -18,7 +18,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @author Fabrice ABBEY <fabriceabbey@gmail.com>
  */
-class Event 
+class Event
 {
     /**
      * @ORM\Id

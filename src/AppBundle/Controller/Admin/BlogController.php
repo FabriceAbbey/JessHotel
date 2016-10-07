@@ -14,6 +14,7 @@ namespace AppBundle\Controller\Admin;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Event;
 use AppBundle\Form\PostType;
+use AppBundle\Form\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -37,6 +38,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class BlogController extends Controller
 {
+
     /**
      * Lists all Post entities.
      *
@@ -57,7 +59,7 @@ class BlogController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $posts = $entityManager->getRepository(Post::class)->findAll();
         $events = $entityManager->getRepository(Event::class)->findAll();
-        
+
         return $this->render('admin/blog/index.html.twig', ['posts' => $posts, 'events' => $events]);
     }
 
@@ -78,7 +80,7 @@ class BlogController extends Controller
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(PostType::class, $post)
-            ->add('saveAndCreateNew', SubmitType::class);
+                ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
 
@@ -107,13 +109,12 @@ class BlogController extends Controller
         }
 
         return $this->render('admin/blog/new.html.twig', [
-            'post' => $post,
-            'form' => $form->createView(),
+                    'post' => $post,
+                    'form' => $form->createView(),
         ]);
     }
-    
-    
-     /**
+
+    /**
      * Creates a new Event entity.
      *
      * @Route("/event/new/", name="admin_event_new")
@@ -126,11 +127,10 @@ class BlogController extends Controller
     public function newEventAction(Request $request)
     {
         $event = new Event();
-        $event->setAuthorEmail($this->getUser()->getEmail());
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
-        $form = $this->createForm(PostType::class, $event)
-            ->add('saveAndCreateNew', SubmitType::class);
+        $form = $this->createForm(EventType::class, $event)
+                ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
 
@@ -140,30 +140,30 @@ class BlogController extends Controller
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setSlug($this->get('slugger')->slugify($event->getTitle()));
-            
-            $files = $form->getData()->getImages();
-            
-             // If there are images uploaded           
-    if($files[0] != '') {
-        $constraints = array('maxSize'=>'1M', 'mimeTypes' => array('image/*'));
-        $uploadFiles = $this->get('your_namespace.fileuploader')->create($files, $constraints);
-    }
 
-    if($uploadFiles->upload()) {
-        $event->setImages($uploadFiles->getFilePaths());
-        $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($event);
-            $entityManager->flush();
-    } else {
-        // If there are file constraint validation issues
-        foreach($uploadFiles->getErrors() as $error) {
-            $this->get('session')->getFlashBag()->add('error', $error);
-        }
-          return $this->render('admin/blog/new.html.twig', [
-            'event' => $event,
-            'form' => $form->createView(),
-        ]);
-    }
+            $files = $form->getData()->getImages();
+
+            // If there are images uploaded           
+            if ($files[0] != '') {
+                $constraints = array('maxSize' => '1M', 'mimeTypes' => array('image/*'));
+                $uploadFiles = $this->get('your_namespace.fileuploader')->create($files, $constraints);
+            }
+
+            if ($uploadFiles->upload()) {
+                $event->setImages($uploadFiles->getFilePaths());
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($event);
+                $entityManager->flush();
+            } else {
+                // If there are file constraint validation issues
+                foreach ($uploadFiles->getErrors() as $error) {
+                    $this->get('session')->getFlashBag()->add('error', $error);
+                }
+                return $this->render('admin/blog/newEvent.html.twig', [
+                            'event' => $event,
+                            'form' => $form->createView(),
+                ]);
+            }
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
@@ -178,9 +178,9 @@ class BlogController extends Controller
             return $this->redirectToRoute('admin_post_index');
         }
 
-        return $this->render('admin/blog/new.html.twig', [
-            'event' => $event,
-            'form' => $form->createView(),
+        return $this->render('admin/blog/newEvent.html.twig', [
+                    'event' => $event,
+                    'form' => $form->createView(),
         ]);
     }
 
@@ -202,8 +202,8 @@ class BlogController extends Controller
         $deleteForm = $this->createDeleteForm($post);
 
         return $this->render('admin/blog/show.html.twig', [
-            'post'        => $post,
-            'delete_form' => $deleteForm->createView(),
+                    'post' => $post,
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -236,9 +236,9 @@ class BlogController extends Controller
         }
 
         return $this->render('admin/blog/edit.html.twig', [
-            'post'        => $post,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'post' => $post,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ]);
     }
 
@@ -286,9 +286,10 @@ class BlogController extends Controller
     private function createDeleteForm(Post $post)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('admin_post_delete', ['id' => $post->getId()]))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('admin_post_delete', ['id' => $post->getId()]))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

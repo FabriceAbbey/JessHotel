@@ -3,203 +3,219 @@
    common elements and decorates all the other templates.
    See http://symfony.com/doc/current/book/templating.html#template-inheritance-and-layouts
    #}
-   <!DOCTYPE html>
-   <html>
-   <head>
-    <meta charset="UTF-8" />
-    <title>{% block title %}Jess Hotel{% endblock %}</title>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Jess Hotel{% endblock %}</title>
 
-    <meta name="keywords" content="hotel, booking, accommodation, inn, spa, resort, travel, holiday, tourism, vacation">
+        <meta name="keywords" content="hotel, booking, accommodation, inn, spa, resort, travel, holiday, tourism, vacation">
 
-    <!-- Mobile Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <!-- Mobile Meta -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- Favicons -->
-    {% block favicons %}
-      <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
-      <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
-      <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-touch-icon-76x76.png">
-      <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/apple-touch-icon-120x120.png">
-      <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/apple-touch-icon-152x152.png">
-      <link rel="apple-touch-icon" sizes="167x167" href="/assets/img/apple-touch-icon-167x167.png">
-      <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon-180x180.png">
-  {% endblock %}
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">    
-  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-  {% block stylesheets %}
-
-
-    {# <link rel="stylesheet" href="{{ asset('css/app.css') }}"> #}
-    <!-- Css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/font.awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/magnific.popup.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/owl.carousel.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/custom.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
-{% endblock %}
-<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-</head>
-
-<body id="{% block body_id %}{% endblock %}">
-
-  {% block header %}
-    <!-- Site Header -->
-    <div class="site-header">
-        <!-- Header Top -->
-        <div class="header-top">
-            <div class="wrapper">
-                <div class="header-contact">
-                    <ul>
-                        <li>+228 22-50-43-17</li>
-                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-                <div class="header-lang">
-                    <ul>
-                        <li class="active"><a href="#">EN</a></li>
-                        <li><a href="#">FR</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- Header Top End -->
-        <!-- Header Bottom -->
-        <div class="header-bottom">
-            <div class="wrapper">
-                <div class="header-logo">
-                    <a href="{{ path('hotel_index') }}"><img src="/assets/img/logojessconcu.png" alt="Jess Hotel"></a>
-                </div>
-                <div class="header-nav">
-                    <ul class="nav-left">
-                        <li><a href="{{ path('hotel_index') }}">HOME</a></li>
-                        <li><a href="{{ path('hotel_about_us') }}">ABOUT US</a></li>
-                        <li><a href="{{ path('hotel_rooms') }}">ROOMS</a></li>
-                        <li><a href="{{ path('hotel_services') }}">SERVICES</a></li>
-                    </ul>
-                    <ul class="nav-right">
-                        <li><a href="{{ path('hotel_gallery') }}">GALLERY</a></li>
-                        <li><a href="{{ path('hotel_booking') }}">BOOKING</a></li>
-                        <li><a href="{{ path('hotel_blog') }}">BLOG</a></li>
-                        <li><a href="{{ path('hotel_contact') }}">CONTACT</a></li>
-                    </ul>
-                </div>
-                <div class="header-toggle">
-                    <i class="fa fa-bars"></i>
-                </div>
-            </div>
-        </div>
-        <!-- Header Bottom End -->
-    </div>
-    <!-- Site Header End -->
-{% endblock %}
-
-{% block body %}
-
-        {{ include('default/_flash_messages.html.twig') }}
-        {% block main %}
-
+        <!-- Favicons -->
+        {% block favicons %}
+            <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.png">
+            <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+            <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-touch-icon-76x76.png">
+            <link rel="apple-touch-icon" sizes="120x120" href="/assets/img/apple-touch-icon-120x120.png">
+            <link rel="apple-touch-icon" sizes="152x152" href="/assets/img/apple-touch-icon-152x152.png">
+            <link rel="apple-touch-icon" sizes="167x167" href="/assets/img/apple-touch-icon-167x167.png">
+            <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon-180x180.png">
         {% endblock %}
 
-{% endblock %}
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400italic,700,700italic,900,900italic&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">    
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
-{% block footer %}
-    <!-- Site Footer -->
-    <div class="site-footer">
-        <!-- Footer Top -->
-        <div class="footer-top">
-            <div class="wrapper">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h5>SOCIAL MEDIA</h5>
-                        <h6>FOLLOW THE GRADIUM</h6>
-                        <div class="widget-social-icons">
+        {% block stylesheets %}
+
+
+            {# <link rel="stylesheet" href="{{ asset('css/app.css') }}"> #}
+            <!-- Css -->
+            <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/font.awesome.min.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/magnific.popup.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/owl.carousel.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/owl.theme.default.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/custom.min.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/jquery-ui.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+            <link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}">
+
+        {% block header %}
+            <!-- Site Header -->
+            <div class="site-header">
+                <!-- Header Top -->
+                <div class="header-top">
+                    <div class="wrapper">
+                        <div class="header-contact">
                             <ul>
+                                <li>+228 22-50-43-17</li>
                                 <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
                                 <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
                                 <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
                                 <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <h5>NEWSLETTER</h5>
-                        <h6>WE LOVE TO SHARE NEW OFFERS AND EXLUSIVE PROMOTIONS</h6>
-                        <div class="widget-newsletter">
-                            <form>
-                                <input type="text" placeholder="ENTER YOUR E-MAIL ADDRESS" required>
-                                <button type="submit"><i class="fa fa-paper-plane"></i></button>
-                            </form>
+                        <div class="header-lang">
+                            <ul>
+                                {% for locale in locales() %}
+                                    <li {% if app.request.locale == locale.code %}class="active"{% endif %} ><a href="{{ path(app.request.get('_route', 'hotel_index'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">{{ locale.code|capitalize }}</a></li>
+                                    {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
+                <!-- Header Top End -->
+                <!-- Header Bottom -->
+                <div class="header-bottom">
+                    <div class="wrapper">
+                        <div class="header-logo">
+                            <a href="{{ path('hotel_index') }}"><img src="/assets/img/JH logo1.png" alt="Jess Hotel"></a>
+                        </div>
+                        <div class="header-nav">
+                            <ul class="nav-left">
+                                <li><a href="{{ path('hotel_index') }}">HOME</a></li>
+                                <li><a href="{{ path('hotel_about_us') }}">ABOUT US</a></li>
+                                <li><a href="{{ path('hotel_rooms') }}">ROOMS</a></li>
+                                <li><a href="{{ path('hotel_services') }}">SERVICES</a></li>
+                            </ul>
+                            <ul class="nav-right">
+                                <li><a href="{{ path('hotel_gallery') }}">GALLERY</a></li>
+                                <li><a href="{{ path('hotel_booking') }}">BOOKING</a></li>
+                                <li><a href="{{ path('hotel_blog') }}">BLOG</a></li>
+                                <li><a href="{{ path('hotel_contact') }}">CONTACT</a></li>
+                                 {% if is_granted('ROLE_ADMIN') %}
+                                        <li>
+                                            <a href="{{ path('admin_index') }}">
+                                                <i class="fa fa-lock" aria-hidden="true"></i> {{ 'menu.admin'|trans }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if app.user %}
+                                    <li>
+                                        <a href="{{ path('security_logout') }}">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'menu.logout'|trans }}
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                        <div class="header-toggle">
+                            <i class="fa fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Bottom End -->
             </div>
-        </div>
-        <!-- Footer Top End -->
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <div class="wrapper">
-                <div class="footer-logo">
-                    <img src="assets/img/logo.png" alt="Jess Hotel">
+            <!-- Site Header End -->
+        {% endblock %}
+
+        {% block body %}
+
+            {{ include('default/_flash_messages.html.twig') }}
+            {% block main %}
+
+            {% endblock %}
+
+        {% endblock %}
+
+        {% block footer %}
+            <!-- Site Footer -->
+            <div class="site-footer">
+                <!-- Footer Top -->
+                <div class="footer-top">
+                    <div class="wrapper">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h5>SOCIAL MEDIA</h5>
+                                <h6>FOLLOW THE GRADIUM</h6>
+                                <div class="widget-social-icons">
+                                    <ul>
+                                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5>NEWSLETTER</h5>
+                                <h6>WE LOVE TO SHARE NEW OFFERS AND EXLUSIVE PROMOTIONS</h6>
+                                <div class="widget-newsletter">
+                                    <form>
+                                        <input type="text" placeholder="ENTER YOUR E-MAIL ADDRESS" required>
+                                        <button type="submit"><i class="fa fa-paper-plane"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-copyright">
-                    <p>COPYRIGHT © JESS HOTEL</p>
+                <!-- Footer Top End -->
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="wrapper">
+                        <div class="footer-logo">
+                            <img src="/assets/img/JH logo1.png" alt="Jess Hotel">
+                        </div>
+                        <div class="footer-copyright">
+                            <p>COPYRIGHT © JESS HOTEL</p>
+                        </div>
+                        <div class="footer-contact">
+                            <ul>
+                                <li><i class="fa fa-map-marker"></i> AVENUE PYA PROLONGEE, TOTSI-ADIDOADIN, LOME-TOGO</li>
+                                <li><i class="fa fa-phone"></i> +228 2250-43-17</li>
+                                <li><a href="mailto:info@hoteljesshouse.com"><i class="fa fa-paper-plane"></i> INFO@HOTELJESSHOUSE.COM</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-nav">
+                            <ul>
+                                <li><a href="#">SITEMAP</a></li>
+                                <li><a href="#">PRIVACY POLICY</a></li>
+                                <li><a href="#">TERMS OF USE</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-contact">
-                    <ul>
-                        <li><i class="fa fa-map-marker"></i> AVENUE PYA PROLONGEE, TOTSI-ADIDOADIN, LOME-TOGO</li>
-                        <li><i class="fa fa-phone"></i> +228 2250-43-17</li>
-                        <li><a href="mailto:info@hoteljesshouse.com"><i class="fa fa-paper-plane"></i> INFO@HOTELJESSHOUSE.COM</a></li>
-                    </ul>
-                </div>
-                <div class="footer-nav">
-                    <ul>
-                        <li><a href="#">SITEMAP</a></li>
-                        <li><a href="#">PRIVACY POLICY</a></li>
-                        <li><a href="#">TERMS OF USE</a></li>
-                    </ul>
-                </div>
+                <!-- Footer Bottom End -->
             </div>
-        </div>
-        <!-- Footer Bottom End -->
-    </div>
-    <!-- Site Footer End -->
-{% endblock %}
+            <!-- Site Footer End -->
+        {% endblock %}
 
-{% block javascripts %}
-    <!-- Scripts -->
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/jquery-ui.min.js"></script>
-    <script src="/assets/js/jquery.fitvids.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/magnific.popup.min.js"></script>
-    <script src="/assets/js/imagesloaded.pkgd.js"></script>
-    <script src="/assets/js/isotope.pkgd.min.js"></script>
-    <script src="/assets/js/owl.carousel.min.js"></script>
-    <script src="/assets/js/booking.form.js"></script>
-    <script src="/assets/js/contact.form.js"></script>
-    <script src="/assets/js/custom.min.js"></script>
+        {% block javascripts %}
+            <!-- Scripts -->
+            <script src="/assets/js/jquery.min.js"></script>
+            <script src="/assets/js/jquery-ui.min.js"></script>
+            <script src="/assets/js/jquery.fitvids.js"></script>
+            <script src="/assets/js/bootstrap.min.js"></script>
+            <script src="/assets/js/magnific.popup.min.js"></script>
+            <script src="/assets/js/imagesloaded.pkgd.js"></script>
+            <script src="/assets/js/isotope.pkgd.min.js"></script>
+            <script src="/assets/js/owl.carousel.min.js"></script>
+            <script src="/assets/js/booking.form.js"></script>
+            <script src="/assets/js/contact.form.js"></script>
+            <script src="/assets/js/custom.min.js"></script>
 
-    <!-- Map Scripts -->
-    <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
-    <script src="/assets/js/gmap3.min.js"></script>
+            <!-- Map Scripts -->
+            <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+            <script src="/assets/js/gmap3.min.js"></script>
 
-    <!-- Custom Scripts -->
-    <script src="/assets/js/custom.js"></script>
+            <!-- Custom Scripts -->
+            <script src="/assets/js/custom.js"></script>
 
-{% endblock %}
+        {% endblock %}
 
-{% block extra_javascripts %}
+        {% block extra_javascripts %}
 
-{% endblock %}
-</body>
+        {% endblock %}
+    </body>
 </html>

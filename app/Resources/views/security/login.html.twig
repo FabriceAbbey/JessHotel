@@ -10,14 +10,14 @@
     {% endif %}
 
     <div class="row">
-        <div class="col-sm-5">
+        <div class="col-md-offset-4 col-sm-5 align-center">
             <div class="well">
                 <form action="{{ path('security_login') }}" method="post">
                     <fieldset>
                         <legend><i class="fa fa-lock"></i> {{ 'title.login'|trans }}</legend>
                         <div class="form-group">
                             <label for="username">{{ 'label.username'|trans }}</label>
-                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
+                            <input type="text" id="username" name="_username" value="" class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label for="password">{{ 'label.password'|trans }}</label>
@@ -32,7 +32,7 @@
             </div>
         </div>
 
-        <div id="login-help" class="col-sm-7">
+        {#<div id="login-help" class="col-sm-7">
             <h3>
                 <i class="fa fa-long-arrow-left"></i>
                 {{ 'help.login_users'|trans }}
@@ -77,14 +77,12 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div>#}
     </div>
 {% endblock %}
 {% block sidebar %}
 
     {{ parent() }}
-
-    {{ show_source_code(_self) }}
 {% endblock %}
 
 {% block javascripts %}
@@ -97,8 +95,6 @@
             // in a real application, hardcoding the user/password would be idiotic
             // but for the demo application it's very convenient to do so
             if (!usernameEl.val() && !passwordEl.val()) {
-                usernameEl.val('anna_admin');
-                passwordEl.val('kitten');
             }
         });
     </script>
