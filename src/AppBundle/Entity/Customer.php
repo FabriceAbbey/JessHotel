@@ -41,6 +41,26 @@ class Customer
      */
     private $adress;
     
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $email;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $phone;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $country;
+    
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $city;
+    
     
 
 
@@ -139,5 +159,101 @@ class Customer
     public function getAdress()
     {
         return $this->adress;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Customer
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return Customer
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return Customer
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return Customer
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
     }
 }

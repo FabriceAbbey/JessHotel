@@ -42,7 +42,7 @@ class Event
      */
     private $publishedAt;
     
-       /**
+    /**
      * @ORM\Column(type="datetime")
      */
     private $scheduledDate;

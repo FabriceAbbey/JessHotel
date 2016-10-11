@@ -51,67 +51,65 @@
                                 <h2>Personal Info</h2>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper.</p>
                                 <div class="data-form">
-                                    <form action="booking.php" id="booking-form" method="post">
+                                    {{ form_start(form) }}
                                         <input type="hidden" name="form-room" value="Royal Single Room">
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <i class="fa fa-calendar-plus-o"></i>
-                                                <input type="text" name="form-checkin" id="form-checkin" value="04/20/2016" placeholder="CHECK IN" class="datepicker">
+                                                {#<i class="fa fa-calendar-plus-o"></i>#}
+                                                {{ form_widget(form.checkinDate, { 'attr': {'name': 'form-checkin', 'id': 'form-checkin', 'class': 'datepicker', 'placeholder': 'CHECK IN'} }) }}
                                             </div>
                                             <div class="col-md-6">
-                                                <i class="fa fa-calendar-plus-o"></i>
-                                                <input type="text" name="form-checkout" id="form-checkout" value="05/22/2016" placeholder="CHECK OUT" class="datepicker">
+{#                                                <i class="fa fa-calendar-plus-o"></i>#}
+                                                {{ form_widget(form.checkoutDate, { 'attr': {'name': 'form-checkout', 'id': 'form-checkout', 'class': 'datepicker', 'placeholder': 'CHECK OUT'} }) }}
                                             </div>
                                             <div class="col-md-6">
                                                 <i class="fa fa-caret-down"></i>
-                                                <select name="form-adults" id="form-adults">
+                                                {#<select name="form-adults" id="form-adults">
                                                     <option value="">ADULTS</option>
                                                     <option value="1">1 ADULT</option>
                                                     <option value="2" selected>2 ADULT</option>
                                                     <option value="3">3 ADULT</option>
-                                                </select>
+                                                </select>#}
+                                                {{ form_widget(form.adults, { 'attr': {'name': 'form-firstname', 'id': 'form-name', 'placeholder': 'Number of people'} }) }}
+
                                             </div>
                                             <div class="col-md-6">
-                                                <i class="fa fa-caret-down"></i>
-                                                <select name="form-childrens" id="form-childrens">
-                                                    <option value="">CHILDRENS</option>
-                                                    <option value="1" selected>1 CHILDREN</option>
-                                                    <option value="2">2 CHILDREN</option>
-                                                    <option value="3">3 CHILDREN</option>
-                                                </select>
+                                                {{ form_widget(form.customer.firstname, { 'attr': {'name': 'form-firstname', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
+{#                                                <input type="text" name="form-name" id="form-name" placeholder="YOUR NAME">#}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" name="form-name" id="form-name" placeholder="YOUR NAME">
+                                                {{ form_widget(form.customer.lastname, { 'attr': {'name': 'form-lastname', 'id': 'form-name', 'placeholder': 'Lastname'} }) }}
+
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" name="form-surname" id="form-surname" placeholder="YOUR SURNAME">
+                                                {{ form_widget(form.customer.email, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Email'} }) }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" name="form-email" id="form-email" placeholder="YOUR EMAIL ADDRESS">
+                                                {{ form_widget(form.customer.phone, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Telephone'} }) }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" name="form-phone" id="form-phone" placeholder="YOUR PHONE">
+                                                {{ form_widget(form.customer.adress, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Address'} }) }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" name="form-address1" id="form-address1" placeholder="ADDRESS LINE 1">
+                                                {{ form_widget(form.customer.city, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'City'} }) }}
                                             </div>
                                             <div class="col-md-6">
-                                                <input type="text" name="form-address2" id="form-address2" placeholder="ADDRESS LINE 2">
+                                                {{ form_widget(form.customer.country, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
                                             </div>
-                                            <div class="col-md-6">
-                                                <input type="text" name="form-city" id="form-city" placeholder="CITY">
+                                             <div class="col-md-6">
+                                                {{ form_widget(form.room, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
                                             </div>
-                                            <div class="col-md-6">
+                                           {# <div class="col-md-6">
                                                 <input type="text" name="form-country" id="form-country" placeholder="COUNTRY">
                                             </div>
                                             <div class="col-md-12">
                                                 <textarea cols="6" rows="8" name="form-requirements" id="form-requirements" placeholder="SPECIAL REQUIREMENTS"></textarea>
-                                            </div>
+                                            </div>#}
                                             <div class="col-md-6">
-                                                <input type="submit" value="BOOK NOW BY EMAIL" class="btn">
+                                                <input type="submit" value="BOOK NOW" class="btn">
                                             </div>
                                         </div>
-                                    </form>
+                                    {{ form_end(form) }}
                                 </div>
                             </div>
                             <!-- Booking Form End -->
@@ -182,4 +180,12 @@
     <!-- Section Booking End -->
 </div>
 <!-- Site Main End -->
+
+{% endblock %}
+{% block extra_javascripts %}
+    <script >
+    $( document ).ready(function() {
+        $("input[type='text']").removeClass("form-control");
+    });
+</script>
 {% endblock %}

@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\Event;
+use AppBundle\Entity\Customer;
 use AppBundle\Form\Type\DateTimePickerType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,7 +25,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class EventType extends AbstractType
+class CustomerType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -43,25 +43,33 @@ class EventType extends AbstractType
         //     $builder->add('title', null, ['required' => false, ...]);
 
         $builder
-            ->add('title', null, [
-                'attr' => ['autofocus' => true],
+            ->add('firstname', null, [
+                
                 'label' => 'label.title',
             ])
-            ->add('description', TextareaType::class, [
+            ->add('lastname', null, [
+                
+                'label' => 'label.title',
+            ])
+            ->add('adress', null, [
                 'label' => 'label.description',
             ])
-            ->add('scheduledDate', DateTimePickerType::class, [
-                'label' => 'label.published_at',
+            ->add('email', null, [
+                
+                'label' => 'label.title',
             ])
-            ->add('publishedAt', DateTimePickerType::class, [
-                'label' => 'label.published_at',
+            ->add('city', null, [
+                
+                'label' => 'label.title',
             ])
-            ->add('images', FileType::class, array(
-                'attr' => array(
-                    'accept' => 'image/*',
-                    'multiple' => 'multiple'
-                )
-            ))
+            ->add('country', CountryType::class, [
+                
+                'label' => 'label.title',
+            ])
+            ->add('phone', null, [
+                
+                'label' => 'label.title',
+            ])
         ;
     }
 
@@ -71,7 +79,7 @@ class EventType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Event::class,
+            'data_class' => Customer::class,
         ]);
     }
 }

@@ -13,6 +13,9 @@ namespace AppBundle\Controller\Admin;
 
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Event;
+use AppBundle\Entity\Room;
+use AppBundle\Entity\Booking;
+use AppBundle\Form\BookingType;
 use AppBundle\Form\PostType;
 use AppBundle\Form\EventType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -59,8 +62,9 @@ class BlogController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $posts = $entityManager->getRepository(Post::class)->findAll();
         $events = $entityManager->getRepository(Event::class)->findAll();
+        $rooms = $entityManager->getRepository(Room::class)->findAll();
 
-        return $this->render('admin/blog/index.html.twig', ['posts' => $posts, 'events' => $events]);
+        return $this->render('admin/blog/index.html.twig', ['posts' => $posts, 'events' => $events, 'rooms' => $rooms]);
     }
 
     /**

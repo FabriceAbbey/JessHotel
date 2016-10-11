@@ -9,11 +9,12 @@
 
 {% block date_time_picker_widget %}
     {% spaceless %}
-        <div class="input-group date" data-toggle="datetimepicker">
+{#        <div class="input-group date" data-toggle="datetimepicker">#}
             {{ block('datetime_widget') }}
-            <span class="input-group-addon">
-                <span class="fa fa-calendar"></span>
-            </span>
-        </div>
+            
+{#            <span class="input-group-addon">#}
+               <i class="fa fa-calendar-plus-o"></i>
+{#            </span>#}
+{#        </div>#}
     {% endspaceless %}
 {% endblock %}

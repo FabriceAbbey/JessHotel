@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RoomRepository")
  * @ORM\Table(name="Room")
  *
  * Defines the properties of the User entity to represent the application users.

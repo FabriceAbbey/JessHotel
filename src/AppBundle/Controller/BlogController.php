@@ -12,6 +12,10 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Room;
+use AppBundle\Entity\Booking;
+use AppBundle\Form\BookingType;
+use AppBundle\Form\RoomType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -81,10 +85,58 @@ class BlogController extends Controller
     /**
      * @Route("/booking/", name="hotel_booking")
      */
-    public function bookingAction()
+    public function bookingAction(Request $request)
     {
+        $booking = new Booking();
+       
+        // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
+        $form = $this->createForm(BookingType::class, $booking)
+                ->add('saveAndCreateNew', SubmitType::class);
 
-        return $this->render('hotel/booking.html.twig');
+        $form->handleRequest($request);
+
+        // the isSubmitted() method is completely optional because the other
+        // isValid() method already checks whether the form is submitted.
+        // However, we explicitly add it to improve code readability.
+        // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
+        if ($form->isSubmitted() && $form->isValid()) {
+            $booking->setBookingId($this->generateReservationId());
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($booking);
+            $entityManager->flush();
+
+            // Flash messages are used to notify the user about the result of the
+            // actions. They are deleted automatically from the session as soon
+            // as they are accessed.
+            // See http://symfony.com/doc/current/book/controller.html#flash-messages
+            $this->addFlash('success', 'post.created_successfully');
+
+            if ($form->get('saveAndCreateNew')->isClicked()) {
+                return $this->redirectToRoute('hotel_booking');
+            }
+
+            return $this->redirectToRoute('hotel_booking');
+        }
+
+        return $this->render('hotel/booking.html.twig', [
+                    'booking' => $booking,
+                    'form' => $form->createView(),
+        ]);
+
+        return $this->render('hotel/booking.html.twig', array('reservation' => $randomString));
+    }
+    
+    public function generateReservationId() 
+    {
+          $length = 10;
+        $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
     }
 
     /**
