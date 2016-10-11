@@ -63,8 +63,9 @@ class BlogController extends Controller
         $posts = $entityManager->getRepository(Post::class)->findAll();
         $events = $entityManager->getRepository(Event::class)->findAll();
         $rooms = $entityManager->getRepository(Room::class)->findAll();
+        $bookings = $entityManager->getRepository(Booking::class)->findAll();
 
-        return $this->render('admin/blog/index.html.twig', ['posts' => $posts, 'events' => $events, 'rooms' => $rooms]);
+        return $this->render('admin/blog/index.html.twig', ['posts' => $posts, 'events' => $events, 'rooms' => $rooms, 'bookings' => $bookings]);
     }
 
     /**

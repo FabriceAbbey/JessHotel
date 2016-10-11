@@ -94,18 +94,20 @@ class BlogController extends Controller
                 ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
+        echo($form->isSubmitted() );die();
 
         // the isSubmitted() method is completely optional because the other
         // isValid() method already checks whether the form is submitted.
         // However, we explicitly add it to improve code readability.
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
+          
             $booking->setBookingId($this->generateReservationId());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($booking);
             $entityManager->flush();
-
+            
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
             // as they are accessed.
@@ -118,7 +120,8 @@ class BlogController extends Controller
 
             return $this->redirectToRoute('hotel_booking');
         }
-
+        
+         
         return $this->render('hotel/booking.html.twig', [
                     'booking' => $booking,
                     'form' => $form->createView(),

@@ -94,10 +94,12 @@
                                                 {{ form_widget(form.customer.city, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'City'} }) }}
                                             </div>
                                             <div class="col-md-6">
+                                                 <i class="fa fa-caret-down"></i>
                                                 {{ form_widget(form.customer.country, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
                                             </div>
                                              <div class="col-md-6">
-                                                {{ form_widget(form.room, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
+                                                  <i class="fa fa-caret-down"></i>
+                                                {{ form_widget(form.room, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Choose a  Room'} }) }}
                                             </div>
                                            {# <div class="col-md-6">
                                                 <input type="text" name="form-country" id="form-country" placeholder="COUNTRY">
@@ -106,10 +108,11 @@
                                                 <textarea cols="6" rows="8" name="form-requirements" id="form-requirements" placeholder="SPECIAL REQUIREMENTS"></textarea>
                                             </div>#}
                                             <div class="col-md-6">
-                                                <input type="submit" value="BOOK NOW" class="btn">
+                                                {{ form_widget(form.submit, { 'label': 'Book now' }) }}
+{#                                                <input type="submit" value="BOOK NOW" class="btn">#}
                                             </div>
                                         </div>
-                                    {{ form_end(form) }}
+                                    {{ form_end(form, {'render_rest': false}) }}
                                 </div>
                             </div>
                             <!-- Booking Form End -->

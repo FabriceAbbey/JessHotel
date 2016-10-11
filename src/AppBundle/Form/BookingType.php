@@ -14,13 +14,15 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Room;
 use AppBundle\Form\Type\CustomerType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;   
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Form\Type\DateTimePickerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
  * Defines the form used to create and manipulate blog posts.
@@ -28,12 +30,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class BookingType extends AbstractType {
+class BookingType extends AbstractType
+{
 
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         // For the full reference of options defined by each form field type
         // see http://symfony.com/doc/current/reference/forms/types.html
         // By default, form fields include the 'required' attribute, which enables
@@ -51,12 +55,19 @@ class BookingType extends AbstractType {
                 ->add('room', EntityType::class, array(
                     'class' => 'AppBundle:Room',
                     'choice_label' => 'name',
+                    'placeholder' =>"Select a room"
                 ))
                 ->add('checkinDate', DateTimePickerType::class, [
                     'label' => 'label.published_at',
                 ])
-                ->add('adults', null, [
-                    'label' => 'label.published_at',
+                ->add('adults', ChoiceType::class, [
+                    'label' => 'Number of Person',
+                    'choices' => array(
+                        '1' => 1,
+                        '2' => 2,
+                        '3' => 3,
+                    ),
+                    'placeholder' => 'Number of person',
                 ])
                 ->add('checkoutDate', DateTimePickerType::class, [
                     'label' => 'label.published_at',
@@ -64,6 +75,9 @@ class BookingType extends AbstractType {
                 ->add('customer', CustomerType::class, [
                     'label' => 'label.published_at',
                 ])
+                ->add('submit', submitType::class, array(
+                    'attr' => array('class' => 'btn'),
+        ));
 //                ->add('images', FileType::class, array(
 //                    'attr' => array(
 //                        'accept' => 'image/*',
@@ -76,7 +90,8 @@ class BookingType extends AbstractType {
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver) {
+    public function configureOptions(OptionsResolver $resolver)
+    {
         $resolver->setDefaults([
             'data_class' => Booking::class,
         ]);
