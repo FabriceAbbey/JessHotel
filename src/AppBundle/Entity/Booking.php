@@ -32,7 +32,7 @@ class Booking
     private $booking_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Room")
+     * @ORM\ManyToOne(targetEntity="Room", cascade={"persist"})
      * @ORM\JoinColumn(name="room_id", referencedColumnName="id")
      */
     private $room;
@@ -53,7 +53,7 @@ class Booking
     private $adults;
     
    /**
-     * @ORM\ManyToOne(targetEntity="Customer")
+     * @ORM\ManyToOne(targetEntity="Customer", cascade={"persist"})
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     private $customer;

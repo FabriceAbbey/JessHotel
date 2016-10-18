@@ -94,8 +94,7 @@ class BlogController extends Controller
                 ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
-        echo($form->isSubmitted() );die();
-
+        
         // the isSubmitted() method is completely optional because the other
         // isValid() method already checks whether the form is submitted.
         // However, we explicitly add it to improve code readability.
@@ -119,7 +118,7 @@ class BlogController extends Controller
             }
 
             return $this->redirectToRoute('hotel_booking');
-        }
+        } 
         
          
         return $this->render('hotel/booking.html.twig', [
@@ -127,7 +126,7 @@ class BlogController extends Controller
                     'form' => $form->createView(),
         ]);
 
-        return $this->render('hotel/booking.html.twig', array('reservation' => $randomString));
+//        return $this->render('hotel/booking.html.twig', array('reservation' => $randomString));
     }
     
     public function generateReservationId() 
