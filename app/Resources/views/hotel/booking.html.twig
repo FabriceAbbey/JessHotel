@@ -2,193 +2,198 @@
 
 {% block body_id 'jess_rooms' %}
 
-{% block main %}
-<!-- Site Main -->
-<div class="site-main">
-    <!-- Section Page Title -->
-    <div class="section">
-        <div class="widget-page-title">
-            <div class="widget-background" data-background="/assets/img/photo-title.jpg"></div>
-            <div class="wrapper-inner">
-                <!-- Title -->
-                <h5>STAY THE GRANDIUM</h5>
-                <h1>Booking Page</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices. Nunc et magna velit.</p>
-                <!-- Title Emd -->
-                <!-- Breadcrumb -->
-                <div class="widget-breadcrumb">
-                    <ul>
-                        <li><a href="#">HOME</a></li>
-                        <li><a href="#">PAGES</a></li>
-                        <li>BOOKING PAGE</li>
-                    </ul>
+    {% block main %}
+        <!-- Site Main -->
+        <div class="site-main">
+            <!-- Section Page Title -->
+            <div class="section">
+                <div class="widget-page-title">
+                    <div class="widget-background" data-background="/assets/img/photo-title.jpg"></div>
+                    <div class="wrapper-inner">
+                        <!-- Title -->
+                        <h5>STAY THE GRANDIUM</h5>
+                        <h1>Booking Page</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices. Nunc et magna velit.</p>
+                        <!-- Title Emd -->
+                        <!-- Breadcrumb -->
+                        <div class="widget-breadcrumb">
+                            <ul>
+                                <li><a href="#">HOME</a></li>
+                                <li><a href="#">PAGES</a></li>
+                                <li>BOOKING PAGE</li>
+                            </ul>
+                        </div>
+                        <!-- Breadcrumb End -->
+                    </div>
                 </div>
-                <!-- Breadcrumb End -->
             </div>
-        </div>
-    </div>
-    <!-- Section Page Title End -->
+            <!-- Section Page Title End -->
 
-    <!-- Section Booking -->
-    <div class="section">
-        <div class="widget-booking-form">
-            <div class="wrapper-inner">
-                <div class="widget-inner">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-7">
-                            <!-- Booking Complete -->
-                            <div class="booking-complete">
-                                <h5>BOOKING</h5>
-                                <h2>Your Reservation Completed</h2>
-                                <div class="complete-message">
-                                    <i class="fa fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper.    
+            <!-- Section Booking -->
+            <div class="section">
+                <div class="widget-booking-form">
+                    <div class="wrapper-inner">
+                        <div class="widget-inner">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-7">
+                                    <!-- Booking Complete -->
+                                    <div class="booking-complete">
+                                        <h5>BOOKING</h5>
+                                        <h2>Your Reservation Completed</h2>
+                                        <div class="complete-message">
+                                            <i class="fa fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper.    
+                                        </div>
+                                    </div>
+                                    <!-- Booking Complete End -->
+                                    <!-- Booking Form -->
+                                    <div class="booking-form">
+                                        <h5>BOOKING FORM</h5>
+                                        <h2>Personal Info</h2>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper.</p>
+                                        <div class="data-form">
+                                            {{ form_start(form) }}
+                                            {{ form_errors(form) }}
+                                            <input type="hidden" name="form-room" value="Royal Single Room">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    {#<i class="fa fa-calendar-plus-o"></i>#}
+                                                    {{ form_widget(form.checkinDate, { 'attr': {'name': 'form-checkin', 'id': 'form-checkin', 'class': 'datepicker', 'placeholder': 'CHECK IN', 'ng-model' : 'checkinDate'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {#                                                <i class="fa fa-calendar-plus-o"></i>#}
+                                                    {{ form_widget(form.checkoutDate, { 'attr': {'name': 'form-checkout', 'id': 'form-checkout', 'class': 'datepicker', 'placeholder': 'CHECK OUT', 'ng-model' : 'checkoutDate'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <i class="fa fa-caret-down"></i>
+                                                    {#<select name="form-adults" id="form-adults">
+                                                        <option value="">ADULTS</option>
+                                                        <option value="1">1 ADULT</option>
+                                                        <option value="2" selected>2 ADULT</option>
+                                                        <option value="3">3 ADULT</option>
+                                                    </select>#}
+                                                    {{ form_widget(form.adults, { 'attr': {'name': 'form-firstname', 'id': 'form-name', 'placeholder': 'Number of people', 'ng-model' : 'people'} }) }}
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.customer.firstname, { 'attr': {'name': 'form-firstname', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
+                                                    {#                                                <input type="text" name="form-name" id="form-name" placeholder="YOUR NAME">#}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.customer.lastname, { 'attr': {'name': 'form-lastname', 'id': 'form-name', 'placeholder': 'Lastname'} }) }}
+
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.customer.email, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Email'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.customer.phone, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Telephone'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.customer.adress, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Address'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.customer.city, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'City'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <i class="fa fa-caret-down"></i>
+                                                    {{ form_widget(form.customer.country, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <i class="fa fa-caret-down"></i>
+                                                    {{ form_widget(form.room, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Choose a  Room', 'ng-model' : 'room'} }) }}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <span></span>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    {{ form_widget(form.submit, { 'label': 'Book now' }) }}
+                                                </div>
+
+                                                {% if app.user and is_granted('ROLE_ADMIN') %}
+                                                    <div class="col-md-6">
+                                                        {{ form_widget(form.saveAndCreateNew, { 'label': 'Book now'}) }}
+                                                    </div>
+                                                {% endif %}
+                                            </div>
+                                            {{ form_widget(form._token, { 'attr':{  'class': 'hidden' } }) }}
+                                            {{ form_end(form) }}
+                                        </div>
+                                    </div>
+                                    <!-- Booking Form End -->
                                 </div>
-                            </div>
-                            <!-- Booking Complete End -->
-                            <!-- Booking Form -->
-                            <div class="booking-form">
-                                <h5>BOOKING FORM</h5>
-                                <h2>Personal Info</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper.</p>
-                                <div class="data-form">
-                                    {{ form_start(form) }}
-                                        <input type="hidden" name="form-room" value="Royal Single Room">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                {#<i class="fa fa-calendar-plus-o"></i>#}
-                                                {{ form_widget(form.checkinDate, { 'attr': {'name': 'form-checkin', 'id': 'form-checkin', 'class': 'datepicker', 'placeholder': 'CHECK IN'} }) }}
+                                <div class="col-lg-4 col-md-5">
+                                    <!-- Booking Detail -->
+                                    <div class="booking-detail">
+                                        <h5>BOOKING DETAILS</h5>
+                                        <h2>Selected Room</h2>
+                                        <div class="detail-room">
+                                            <div class="room-photo">
+                                                <a href="rooms-detail.html" data-background="/assets/img/photo-room-5.jpg"></a>
                                             </div>
-                                            <div class="col-md-6">
-{#                                                <i class="fa fa-calendar-plus-o"></i>#}
-                                                {{ form_widget(form.checkoutDate, { 'attr': {'name': 'form-checkout', 'id': 'form-checkout', 'class': 'datepicker', 'placeholder': 'CHECK OUT'} }) }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                <i class="fa fa-caret-down"></i>
-                                                {#<select name="form-adults" id="form-adults">
-                                                    <option value="">ADULTS</option>
-                                                    <option value="1">1 ADULT</option>
-                                                    <option value="2" selected>2 ADULT</option>
-                                                    <option value="3">3 ADULT</option>
-                                                </select>#}
-                                                {{ form_widget(form.adults, { 'attr': {'name': 'form-firstname', 'id': 'form-name', 'placeholder': 'Number of people'} }) }}
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.customer.firstname, { 'attr': {'name': 'form-firstname', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
-{#                                                <input type="text" name="form-name" id="form-name" placeholder="YOUR NAME">#}
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.customer.lastname, { 'attr': {'name': 'form-lastname', 'id': 'form-name', 'placeholder': 'Lastname'} }) }}
-
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.customer.email, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Email'} }) }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.customer.phone, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Telephone'} }) }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.customer.adress, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Address'} }) }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.customer.city, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'City'} }) }}
-                                            </div>
-                                            <div class="col-md-6">
-                                                 <i class="fa fa-caret-down"></i>
-                                                {{ form_widget(form.customer.country, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Firstname'} }) }}
-                                            </div>
-                                             <div class="col-md-6">
-                                                  <i class="fa fa-caret-down"></i>
-                                                {{ form_widget(form.room, { 'attr': {'name': 'form-name', 'id': 'form-name', 'placeholder': 'Choose a  Room'} }) }}
-                                            </div>
-                                           {# <div class="col-md-6">
-                                                <input type="text" name="form-country" id="form-country" placeholder="COUNTRY">
-                                            </div>
-                                            <div class="col-md-12">
-                                                <textarea cols="6" rows="8" name="form-requirements" id="form-requirements" placeholder="SPECIAL REQUIREMENTS"></textarea>
-                                            </div>#}
-                                            <div class="col-md-6">
-                                                {{ form_widget(form.submit, { 'label': 'Book now' }) }}
-{#                                                <input type="submit" value="BOOK NOW" class="btn">#}
+                                            <div class="room-desc">
+                                                <h3><a href="rooms-detail.html">{[{ room }]}</a></h3>
+                                                <h4>$ 230 <small>PER NIGHT</small></h4>
                                             </div>
                                         </div>
-                                    {{ form_end(form, {'render_rest': false}) }}
-                                </div>
-                            </div>
-                            <!-- Booking Form End -->
-                        </div>
-                        <div class="col-lg-4 col-md-5">
-                            <!-- Booking Detail -->
-                            <div class="booking-detail">
-                                <h5>BOOKING DETAILS</h5>
-                                <h2>Selected Room</h2>
-                                <div class="detail-room">
-                                    <div class="room-photo">
-                                        <a href="rooms-detail.html" data-background="/assets/img/photo-room-5.jpg"></a>
+                                        <div class="detail-info">
+                                            <ul>
+                                                <li>
+                                                    <label>CHECK IN</label>
+                                                    <p>{[{ checkinDate }]}</p>
+                                                </li>
+                                                <li>
+                                                    <label>CHECK OUT</label>
+                                                    <p>{[{ checkoutDate }]}</p>
+                                                </li>
+                                                <li>
+                                                    <label>ADULTS</label>
+                                                    <p> {[{ people }]} </p>
+                                                </li>
+                                                {# <li>
+                                                     <label>CHILDRENS</label>
+                                                     <p>1 CHILDREN</p>
+                                                 </li>#}
+                                                <li>
+                                                    <label>NIGHT</label>
+                                                    <p>{[{ dateDifference( checkinDate, checkoutDate) }]} NIGHT</p>
+                                                </li>
+                                                <li>
+                                                    <label>TAX (10%)</label>
+                                                    <p>$ 50</p>
+                                                </li>
+                                                <li class="total">
+                                                    <label>TOTAL PRICE</label>
+                                                    <p>$ 510</p>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="room-desc">
-                                        <h3><a href="rooms-detail.html">Single Room</a></h3>
-                                        <h4>$ 230 <small>PER NIGHT</small></h4>
+                                    <!-- Booking Detail End -->
+                                    <!-- Booking Help -->
+                                    <div class="booking-help">
+                                        <h5>HELP</h5>
+                                        <h2>Need Booking Help?</h2>
+                                        <p>If you need help with booking, Our advisor team are 24/7 at your service to help you.</p>
+                                        <p><a href="mailto:help@thegrandiumhotel.com">info@hoteljesshouse.com</a></p>
+                                        <h3><i class="fa fa-phone-square"></i>+228 22 50 43 17</h3>
                                     </div>
-                                </div>
-                                <div class="detail-info">
-                                    <ul>
-                                        <li>
-                                            <label>CHECK IN</label>
-                                            <p>04/20/2016</p>
-                                        </li>
-                                        <li>
-                                            <label>CHECK OUT</label>
-                                            <p>04/22/2016</p>
-                                        </li>
-                                        <li>
-                                            <label>ADULTS</label>
-                                            <p>2 PERSON</p>
-                                        </li>
-                                        <li>
-                                            <label>CHILDRENS</label>
-                                            <p>1 CHILDREN</p>
-                                        </li>
-                                        <li>
-                                            <label>NIGHT</label>
-                                            <p>2 NIGHT</p>
-                                        </li>
-                                        <li>
-                                            <label>TAX (10%)</label>
-                                            <p>$ 50</p>
-                                        </li>
-                                        <li class="total">
-                                            <label>TOTAL PRICE</label>
-                                            <p>$ 510</p>
-                                        </li>
-                                    </ul>
+                                    <!-- Booking Help End -->
                                 </div>
                             </div>
-                            <!-- Booking Detail End -->
-                            <!-- Booking Help -->
-                            <div class="booking-help">
-                                <h5>HELP</h5>
-                                <h2>Need Booking Help?</h2>
-                                <p>If you need help with booking, Our advisor team are 24/7 at your service to help you.</p>
-                                <p><a href="mailto:help@thegrandiumhotel.com">info@hoteljesshouse.com</a></p>
-                                <h3><i class="fa fa-phone-square"></i>+228 22 50 43 17</h3>
-                            </div>
-                            <!-- Booking Help End -->
                         </div>
                     </div>
                 </div>
             </div>
+            <!-- Section Booking End -->
         </div>
-    </div>
-    <!-- Section Booking End -->
-</div>
-<!-- Site Main End -->
+        <!-- Site Main End -->
 
-{% endblock %}
-{% block extra_javascripts %}
-    <script >
-    $( document ).ready(function() {
-        $("input[type='text']").removeClass("form-control");
-    });
-</script>
-{% endblock %}
+    {% endblock %}
+    {% block extra_javascripts %}
+        <script >
+            $(document).ready(function () {
+                $("input[type='text']").removeClass("form-control");
+            });
+        </script>
+    {% endblock %}

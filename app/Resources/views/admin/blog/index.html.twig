@@ -135,25 +135,31 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <h4>Room Type</h4>
+                        <table class="table table-responsive table-striped"> 
+                            <thead>
+                                <tr>
+                                    <td>
+                                        Booking ID
+                                    </td>
+                                    <td>
+                                        Client Name
+                                    </td>
+                                    <td>
+                                        Date
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
                         {% for booking in bookings %}
-                        <div class="widget_summary">
-                            <div class="w_left w_25">
-                                <span>{{room.name}}</span>
-                            </div>
-                            <div class="w_center w_55">
-                                <div class="progress">
-                                    <div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 66%;">
-                                        <span class="sr-only">60% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w_right w_20">
-                                <span></span>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
+                        <tr>
+                            <td>{{booking.bookingId}}</td>
+                                <td >{{ booking.customer.firstname }} </td>    
+                            
+                                <td>{{ booking.checkinDate|date('Y-m-d') }} - {{ booking.checkoutDate |date('Y-m-d') }}</td>
+                        </tr>
                         {% endfor %}
+                        </tbody>
+                        </table>
                  </div>
                 </div>
             </div>
