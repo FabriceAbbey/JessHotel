@@ -75,10 +75,8 @@ class Post
      */
     private $publishedAt;
     
-    /* @ORM\OneToMany(targetEntity="PostKeyword", inversedBy="posts")
-     * @ORM\JoinTable(name="posts_keywords", joinColumns={@JoinColumn(name="post_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="keyword_id", referencedColumnName="id")}
-     *      ))
+    /** @ORM\ManyToMany(targetEntity="PostKeyword", inversedBy="posts")
+     * @ORM\JoinTable(name="posts_keywords")
      */
     private $postKeywords;
     

@@ -33,7 +33,6 @@ class PostKeyword
     
     /**
      * @ORM\ManyToMany(targetEntity="Post", mappedBy="postKeywords")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $posts;
    

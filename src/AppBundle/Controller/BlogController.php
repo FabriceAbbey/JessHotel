@@ -86,7 +86,7 @@ class BlogController extends Controller
         
         $paginator  = $this->get('knp_paginator');
         $posts = $paginator->paginate(
-        $query, /* query NOT result */
+        $query, /* query NOT result */ 
         $page/*page number*/,
         Post::NUM_ITEMS/*limit per page*/
         );
@@ -96,7 +96,7 @@ class BlogController extends Controller
         $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
         
-        return $this->render('hotel/blog.html.twig', array("events" => $events, "categories" => $categories, "posts" => $posts, "postKw" => $postkwords));
+        return $this->render('hotel/blog.html.twig', array("events" => $events, "categories" => $categories, "posts" => $posts, "postKeywords" => $postkwords));
     }
 
     /**

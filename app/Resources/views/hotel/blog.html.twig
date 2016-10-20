@@ -166,11 +166,9 @@
                                     <li><a href="#"><span><b>{{event.scheduledDate|date('M')}}</b>{{event.scheduledDate|date('d')}}</span>{{event.name}}</a></li>
                                 {#<li><a href="#"><span><b>MARCH</b>17</span>New Year's Brunch at The Grandium</a></li>
                                 <li><a href="#"><span><b>JANUARY</b>12</span>Family Christmas Lunch at The Grandium</a></li>#}
-                                {% endfor %}
-                                
-                                {% if events | length == 0 %}
+                                {% else  %}
                                     <li>No event scheduled</li>
-                                {% endif %}
+                                {% endfor%}
                             </ul>
                         </div>
                         <!-- Sidebar Events End -->
@@ -188,8 +186,9 @@
                         <div class="widget sidebar-tags">
                             <h5>TAGS</h5>
                             <ul>
-                                {% for k in postKw %}
-                                    <li><a href="#"> {{ k.name }} </a></li>
+                                {{ postKeywords|length }}
+                                {% for postKeyword in postKeywords %}
+{#                                    <li><a href="#"> {{ postKeyword.name }} </a></li>#}
                                 {% else %}
                                     <li>No keyword available</li>
                                 {% endfor %}
