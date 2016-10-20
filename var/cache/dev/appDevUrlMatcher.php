@@ -220,7 +220,16 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->redirect($pathinfo.'/', 'hotel_blog');
             }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'hotel_blog')), array (  '_controller' => 'AppBundle\\Controller\\BlogController::blogAction',  '_locale' => 'fr',));
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'hotel_blog')), array (  'page' => 1,  '_controller' => 'AppBundle\\Controller\\BlogController::blogAction',  '_locale' => 'fr',));
+        }
+
+        // hotel_blog_paginated
+        if (preg_match('#^/(?P<_locale>en|fr)/blog/(?P<page>\\d+)/?$#s', $pathinfo, $matches)) {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'hotel_blog_paginated');
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'hotel_blog_paginated')), array (  '_controller' => 'AppBundle\\Controller\\BlogController::blogAction',  '_locale' => 'fr',));
         }
 
         // hotel_booking

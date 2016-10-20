@@ -12,15 +12,14 @@
             <div class="wrapper-inner">
                 <!-- Title -->
                 <h5>LATEST NEWS</h5>
-                <h1>Blog Page</h1>
+                <h1>Blog</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices. Nunc et magna velit.</p>
                 <!-- Title End -->
                 <!-- Breadcrumb -->
                 <div class="widget-breadcrumb">
                     <ul>
                         <li><a href="#">HOME</a></li>
-                        <li><a href="#">PAGES</a></li>
-                        <li>BLOG PAGE</li>
+                        <li>BLOG</li>
                     </ul>
                 </div>
                 <!-- Breadcrumb End -->
@@ -36,6 +35,7 @@
                 <div class="col-md-9">
                     <!-- Blog List -->
                     <div class="widget-blog-list">
+                        {% for post in posts %}
                         <div class="blog-item">
                             <div class="item-media">
                                 <div class="media-photo">
@@ -48,7 +48,19 @@
                                 <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
                             </div>
                         </div>
-                        <div class="blog-item">
+                            {% endfor %}
+                            
+                            {% if posts |length == 0 %}
+                                <div class="blog-item">
+                            
+                            <div class="item-desc">
+                                <h2>No Post available</h2>
+                                {#<h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
+                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>#}
+                            </div>
+                        </div>
+                                {% endif %}
+                        {#<div class="blog-item">
                             <div class="item-media">
                                 <div class="media-photo">
                                     <a href="blog-single.html" data-background="assets/img/photo-blog-2.jpg"></a>
@@ -111,17 +123,12 @@
                                 <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
                                 <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
                             </div>
-                        </div>
+                        </div>#}
                     </div>
                     <!-- Blog List End -->
                     <!-- Pager -->
                     <div class="widget-pager">
-                        <ul>
-                            <li><a href="#">1</a></li>
-                            <li class="active"><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                        </ul>
+                        {{ knp_pagination_render(posts) }}
                     </div>
                     <!-- Pager End -->
                 </div>
@@ -142,13 +149,11 @@
                             <h5>CATEGORIES</h5>
                             <nav>
                                 <ul>
-                                    <li><a href="#">ACCOMONDATION</a></li>
-                                    <li><a href="#">TRAVEL</a></li>
-                                    <li><a href="#">SERVICES</a></li>
-                                    <li><a href="#">EVENTS</a></li>
-                                    <li><a href="#">ROOMS &amp; SUITES</a></li>
-                                    <li><a href="#">SPA &amp; GYM</a></li>
-                                    <li><a href="#">POOL &amp; SWIM</a></li>
+                                    {% for category in categories %}
+                                        <li><a href="#">{{ category.name }}</a></li>
+                                    {% else %}
+                                        <li>No categories available</li>
+                                    {% endfor %}
                                 </ul>
                             </nav>
                         </div>
@@ -157,9 +162,15 @@
                         <div class="widget sidebar-events">
                             <h5>UPCOMING EVENTS</h5>
                             <ul>
-                                <li><a href="#"><span><b>APRIL</b>25</span>Mothers Day Lunch at The Grandium</a></li>
-                                <li><a href="#"><span><b>MARCH</b>17</span>New Year's Brunch at The Grandium</a></li>
-                                <li><a href="#"><span><b>JANUARY</b>12</span>Family Christmas Lunch at The Grandium</a></li>
+                                {% for event in events %}
+                                    <li><a href="#"><span><b>{{event.scheduledDate|date('M')}}</b>{{event.scheduledDate|date('d')}}</span>{{event.name}}</a></li>
+                                {#<li><a href="#"><span><b>MARCH</b>17</span>New Year's Brunch at The Grandium</a></li>
+                                <li><a href="#"><span><b>JANUARY</b>12</span>Family Christmas Lunch at The Grandium</a></li>#}
+                                {% endfor %}
+                                
+                                {% if events | length == 0 %}
+                                    <li>No event scheduled</li>
+                                {% endif %}
                             </ul>
                         </div>
                         <!-- Sidebar Events End -->
@@ -177,13 +188,11 @@
                         <div class="widget sidebar-tags">
                             <h5>TAGS</h5>
                             <ul>
-                                <li><a href="#">#TRAVEL</a></li>
-                                <li><a href="#">#SERVICES</a></li>
-                                <li><a href="#">#EVENTS</a></li>
-                                <li><a href="#">#ROOMS</a></li>
-                                <li><a href="#">#POOL</a></li>
-                                <li><a href="#">#SPA</a></li>
-                                <li><a href="#">#ACCOMONDATION</a></li>
+                                {% for k in postKw %}
+                                    <li><a href="#"> {{ k.name }} </a></li>
+                                {% else %}
+                                    <li>No keyword available</li>
+                                {% endfor %}
                             </ul>
                         </div>
                         <!-- Sidebar Tags End -->
