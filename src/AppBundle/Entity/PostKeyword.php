@@ -6,8 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- * @ORM\Table(name="Service")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PostKeywordRepository")
+ * @ORM\Table(name="postkeyword")
  *
  * Defines the properties of the User entity to represent the application users.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -17,7 +17,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author Fabrice ABBEY <fabriceabbey@gmail.com>
  */
-class Service 
+class PostKeyword
 {
     /**
      * @ORM\Id
@@ -30,21 +30,20 @@ class Service
      * @ORM\Column(type="string", unique=true)
      */
     private $name;
-
+    
     /**
-     * @ORM\Column(type="text")
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="postKeywords")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $description;
-
-    // *
-    //  * @ORM\Column(type="string")
-     
-    // private $password;
-
+    private $posts;
+   
     /**
-     * @ORM\Column(type="json_array")
+     * Constructor
      */
-    private $pictures = [];
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -61,7 +60,7 @@ class Service
      *
      * @param string $name
      *
-     * @return Service
+     * @return PostKeyword
      */
     public function setName($name)
     {
@@ -81,50 +80,36 @@ class Service
     }
 
     /**
-     * Set description
+     * Add post
      *
-     * @param string $description
+     * @param \AppBundle\Entity\Post $post
      *
-     * @return Service
+     * @return PostKeyword
      */
-    public function setDescription($description)
+    public function addPost(\AppBundle\Entity\Post $post)
     {
-        $this->description = $description;
+        $this->posts[] = $post;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Remove post
      *
-     * @return string
+     * @param \AppBundle\Entity\Post $post
      */
-    public function getDescription()
+    public function removePost(\AppBundle\Entity\Post $post)
     {
-        return $this->description;
+        $this->posts->removeElement($post);
     }
 
     /**
-     * Set pictures
+     * Get posts
      *
-     * @param array $pictures
-     *
-     * @return Service
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setPictures($pictures)
+    public function getPosts()
     {
-        $this->pictures = $pictures;
-
-        return $this;
-    }
-
-    /**
-     * Get pictures
-     *
-     * @return array
-     */
-    public function getPictures()
-    {
-        return $this->pictures;
+        return $this->posts;
     }
 }

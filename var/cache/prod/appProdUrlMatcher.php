@@ -28,7 +28,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         $request = $this->request;
 
         // admin_index
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/admin/post/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/admin/?$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
                 goto not_admin_index;
@@ -42,34 +42,38 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
         not_admin_index:
 
-        // admin_post_index
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/admin/post/?$#s', $pathinfo, $matches)) {
-            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                $allow = array_merge($allow, array('GET', 'HEAD'));
-                goto not_admin_post_index;
-            }
-
-            if (substr($pathinfo, -1) !== '/') {
-                return $this->redirect($pathinfo.'/', 'admin_post_index');
-            }
-
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_post_index')), array (  '_controller' => 'AppBundle\\Controller\\Admin\\BlogController::indexAction',  '_locale' => 'fr',));
-        }
-        not_admin_post_index:
-
         // admin_post_new
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/admin/post/new$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/admin/post/new/?$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
                 goto not_admin_post_new;
             }
 
-            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_post_new')), array (  '_controller' => 'AppBundle\\Controller\\Admin\\BlogController::newAction',  '_locale' => 'fr',));
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'admin_post_new');
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_post_new')), array (  '_controller' => 'AppBundle\\Controller\\Admin\\BlogController::newPostAction',  '_locale' => 'fr',));
         }
         not_admin_post_new:
 
+        // admin_event_new
+        if (preg_match('#^/(?P<_locale>en|fr)/admin/event/new/?$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
+                goto not_admin_event_new;
+            }
+
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'admin_event_new');
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'admin_event_new')), array (  '_controller' => 'AppBundle\\Controller\\Admin\\BlogController::newEventAction',  '_locale' => 'fr',));
+        }
+        not_admin_event_new:
+
         // admin_post_show
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/admin/post/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/admin/(?P<id>\\d+)$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'HEAD'));
                 goto not_admin_post_show;
@@ -80,7 +84,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         not_admin_post_show:
 
         // admin_post_edit
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/admin/post/(?P<id>\\d+)/edit$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/admin/(?P<id>\\d+)/edit$#s', $pathinfo, $matches)) {
             if (!in_array($this->context->getMethod(), array('GET', 'POST', 'HEAD'))) {
                 $allow = array_merge($allow, array('GET', 'POST', 'HEAD'));
                 goto not_admin_post_edit;
@@ -91,7 +95,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         not_admin_post_edit:
 
         // admin_post_delete
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/admin/post/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/admin/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
             if ($this->context->getMethod() != 'DELETE') {
                 $allow[] = 'DELETE';
                 goto not_admin_post_delete;
@@ -102,7 +106,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         not_admin_post_delete:
 
         // hotel_index
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_index');
             }
@@ -111,7 +115,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_rooms
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/rooms/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/rooms/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_rooms');
             }
@@ -120,12 +124,16 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_rooms_paginated
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/rooms/(?P<page>\\d+)$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/rooms/(?P<page>\\d+)/?$#s', $pathinfo, $matches)) {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'hotel_rooms_paginated');
+            }
+
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'hotel_rooms_paginated')), array (  '_controller' => 'AppBundle\\Controller\\BlogController::roomsAction',  '_locale' => 'fr',));
         }
 
         // hotel_room_detail
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/room/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/room/(?P<id>\\d+)/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_room_detail');
             }
@@ -134,7 +142,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_blog
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/blog/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/blog/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_blog');
             }
@@ -143,7 +151,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_booking
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/booking/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/booking/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_booking');
             }
@@ -152,7 +160,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_about_us
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/about\\-us/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/about\\-us/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_about_us');
             }
@@ -161,7 +169,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_services
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/services/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/services/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_services');
             }
@@ -170,7 +178,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_gallery
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/gallery/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/gallery/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_gallery');
             }
@@ -179,7 +187,7 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // hotel_contact
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/contact/?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/contact/?$#s', $pathinfo, $matches)) {
             if (substr($pathinfo, -1) !== '/') {
                 return $this->redirect($pathinfo.'/', 'hotel_contact');
             }
@@ -188,17 +196,17 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         }
 
         // fes_send_mail
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/contact/send\\-mail$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/contact/send\\-mail$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'fes_send_mail')), array (  '_controller' => 'AppBundle\\Controller\\BlogController::sendMailAction',  '_locale' => 'fr',));
         }
 
         // blog_post
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/posts/(?P<slug>[^/]++)$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/posts/(?P<slug>[^/]++)$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'blog_post')), array (  '_controller' => 'AppBundle\\Controller\\BlogController::postShowAction',  '_locale' => 'fr',));
         }
 
         // comment_new
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/comment/(?P<postSlug>[^/]++)/new$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/comment/(?P<postSlug>[^/]++)/new$#s', $pathinfo, $matches)) {
             if ($this->context->getMethod() != 'POST') {
                 $allow[] = 'POST';
                 goto not_comment_new;
@@ -209,22 +217,22 @@ class appProdUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirecta
         not_comment_new:
 
         // security_login
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/login$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/login$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'security_login')), array (  '_controller' => 'AppBundle\\Controller\\SecurityController::loginAction',  '_locale' => 'fr',));
         }
 
         // security_login_check
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/login_check$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/login_check$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'security_login_check')), array (  '_controller' => 'AppBundle\\Controller\\SecurityController::loginCheckAction',  '_locale' => 'fr',));
         }
 
         // security_logout
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)/logout$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)/logout$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'security_logout')), array (  '_controller' => 'AppBundle\\Controller\\SecurityController::logoutAction',  '_locale' => 'fr',));
         }
 
         // homepage
-        if (preg_match('#^/(?P<_locale>en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca|sl)?$#s', $pathinfo, $matches)) {
+        if (preg_match('#^/(?P<_locale>en|fr)?$#s', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, array('_route' => 'homepage')), array (  '_controller' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController::templateAction',  'template' => 'default/homepage.html.twig',  '_locale' => 'fr',));
         }
 

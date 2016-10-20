@@ -15,6 +15,7 @@ use AppBundle\Entity\Room;
 use AppBundle\Entity\Booking;
 use AppBundle\Form\BookingType;
 use AppBundle\Form\RoomType;
+use AppBundle\Entity\Post;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -74,12 +75,28 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/blog/", name="hotel_blog")
+     * @Route("/blog/", name="hotel_blog", defaults={"page" = 1})
+     * @Route("/blog/{page}/", name="hotel_blog_paginated", requirements={"page" : "\d+"})
      */
-    public function blogAction()
+    public function blogAction($page)
     {
-
-        return $this->render('hotel/blog.html.twig');
+        $em    = $this->get('doctrine.orm.entity_manager');
+        $dql   = "SELECT a FROM AppBundle:Post a";
+        $query = $em->createQuery($dql);
+        
+        $paginator  = $this->get('knp_paginator');
+        $posts = $paginator->paginate(
+        $query, /* query NOT result */
+        $page/*page number*/,
+        Post::NUM_ITEMS/*limit per page*/
+        );
+        
+        $postkwords = $this->getDoctrine()->getRepository('AppBundle:PostKeyword')->findAll();
+//        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
+        
+        return $this->render('hotel/blog.html.twig', array("events" => $events, "categories" => $categories, "posts" => $posts, "postKw" => $postkwords));
     }
 
     /**

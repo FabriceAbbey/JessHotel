@@ -64,10 +64,10 @@ class Customer extends \AppBundle\Entity\Customer implements \Doctrine\ORM\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'firstname', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'lastname'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'firstname', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'lastname', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'adress'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'firstname', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'lastname'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'firstname', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'lastname', '' . "\0" . 'AppBundle\\Entity\\Customer' . "\0" . 'adress'];
     }
 
     /**
@@ -230,6 +230,28 @@ class Customer extends \AppBundle\Entity\Customer implements \Doctrine\ORM\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLastname', []);
 
         return parent::getLastname();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setAdress($adress)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAdress', [$adress]);
+
+        return parent::setAdress($adress);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAdress()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAdress', []);
+
+        return parent::getAdress();
     }
 
 }
