@@ -76,7 +76,7 @@ class Post
     private $publishedAt;
     
     /** @ORM\ManyToMany(targetEntity="PostKeyword", inversedBy="posts")
-     * @ORM\JoinTable(name="posts_keywords")
+     *  @ORM\JoinTable(name="posts_keywords")
      */
     private $postKeywords;
     

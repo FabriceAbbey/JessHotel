@@ -186,9 +186,8 @@
                         <div class="widget sidebar-tags">
                             <h5>TAGS</h5>
                             <ul>
-                                {{ postKeywords|length }}
                                 {% for postKeyword in postKeywords %}
-{#                                    <li><a href="#"> {{ postKeyword.name }} </a></li>#}
+                                    <li><a href="#"> {{postKeyword.name }} </a></li>
                                 {% else %}
                                     <li>No keyword available</li>
                                 {% endfor %}
