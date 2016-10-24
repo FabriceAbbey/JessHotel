@@ -39,18 +39,16 @@
                         <div class="blog-item">
                             <div class="item-media">
                                 <div class="media-photo">
-                                    <a href="blog-single.html" data-background="assets/img/photo-blog-1.jpg"></a>
+                                    <a href="{{path('hotel_blog_post_view', {'id': post.id}) }}" data-background="assets/img/photo-blog-1.jpg"></a>
                                 </div>
                             </div>
                             <div class="item-desc">
-                                <h2><a href="blog-single.html">Best Things to Do In London Enjoy the Nightlife</a></h2>
-                                <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
-                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
+                                <h2><a href="{{path('hotel_blog_post_view', {'id': post.id}) }}">{{post.title}}</a></h2>
+                                <h5>BY <a href="#"></a> <i class="fa fa-clock-o"></i> {{post.publishedAt|date('Y-m-d')}} <i class="fa fa-bars"></i> {% for key in post.postKeywords %} <a href="#">{{key.name}}</a>, {% endfor %}</h5>
+                                <p>{{post.slug}}</p>
                             </div>
                         </div>
-                            {% endfor %}
-                            
-                            {% if posts |length == 0 %}
+                            {% else %}
                                 <div class="blog-item">
                             
                             <div class="item-desc">
@@ -59,71 +57,7 @@
                                 <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>#}
                             </div>
                         </div>
-                                {% endif %}
-                        {#<div class="blog-item">
-                            <div class="item-media">
-                                <div class="media-photo">
-                                    <a href="blog-single.html" data-background="assets/img/photo-blog-2.jpg"></a>
-                                </div>
-                            </div>
-                            <div class="item-desc">
-                                <h2><a href="blog-single.html">A Walk from The Grandium Hotel Around</a></h2>
-                                <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
-                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
-                            </div>
-                        </div>
-                        <div class="blog-item">
-                            <div class="item-media">
-                                <div class="media-gallery">
-                                    <div class="media-carousel owl-carousel owl-theme owl-type1">
-                                        <a href="blog-single.html" data-background="assets/img/photo-blog-3.jpg"></a>
-                                        <a href="blog-single.html" data-background="assets/img/photo-blog-4.jpg"></a>
-                                        <a href="blog-single.html" data-background="assets/img/photo-blog-1.jpg"></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item-desc">
-                                <h2><a href="blog-single-gallery.html">Top Events in The Grandium Hotel This February</a></h2>
-                                <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
-                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
-                            </div>
-                        </div>
-                        <div class="blog-item">
-                            <div class="item-media">
-                                <div class="media-video video-full">
-                                    <iframe src="http://player.vimeo.com/video/39493181?title=0&amp;byline=0&amp;portrait=0&amp;autoplay=0" width="500" height="281"></iframe>
-                                </div>
-                            </div>
-                            <div class="item-desc">
-                                <h2><a href="blog-single-vimeo.html">Enjoy Wimbledon Finals Week The Grandium Hotel</a></h2>
-                                <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
-                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
-                            </div>
-                        </div>
-                        <div class="blog-item">
-                            <div class="item-media">
-                                <div class="media-photo">
-                                    <a href="blog-single.html" data-background="assets/img/photo-blog-4.jpg"></a>
-                                </div>
-                            </div>
-                            <div class="item-desc">
-                                <h2><a href="blog-single.html">The Ultimate Father's Day Gift: A Stay at The Grandium Hotel</a></h2>
-                                <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
-                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
-                            </div>
-                        </div>
-                        <div class="blog-item">
-                            <div class="item-media">
-                                <div class="media-video video-full">
-                                    <iframe src="http://www.youtube.com/embed/SqeYP8EU79M" width="560" height="315" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <div class="item-desc">
-                                <h2><a href="blog-single-youtube.html">Father's Day Dining &amp; Afternoon Tea Specials at Sunday</a></h2>
-                                <h5>BY <a href="#">JOHN DOE</a> <i class="fa fa-clock-o"></i> 25 SEP 2015 <i class="fa fa-bars"></i> <a href="#">TRAVEL</a>, <a href="#">PORTRAIT</a>, <a href="#">WEDDING</a></h5>
-                                <p>Etiam interdum diam at posuere bibendum Vivamus malesuada lectus dolor a tincidunt massa rhoncus eu. estibulum dictum mauris eu mauris cursus...</p>
-                            </div>
-                        </div>#}
+                    {% endfor %}
                     </div>
                     <!-- Blog List End -->
                     <!-- Pager -->
@@ -133,82 +67,7 @@
                     <!-- Pager End -->
                 </div>
                 <div class="col-md-3">
-                    <!-- Blog Sidebar -->
-                    <div class="widget-blog-sidebar">
-                        <!-- Sidebar Search -->
-                        <div class="widget sidebar-search">
-                            <h5>SEARCH</h5>
-                            <form>
-                                <input type="text" placeholder="ENTER KEYWORDS" required>
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                        <!-- Sidebar Search End -->
-                        <!-- Sidebar Categories -->
-                        <div class="widget sidebar-categories">
-                            <h5>CATEGORIES</h5>
-                            <nav>
-                                <ul>
-                                    {% for category in categories %}
-                                        <li><a href="#">{{ category.name }}</a></li>
-                                    {% else %}
-                                        <li>No categories available</li>
-                                    {% endfor %}
-                                </ul>
-                            </nav>
-                        </div>
-                        <!-- Sidebar Categories End -->
-                        <!-- Sidebar Events -->
-                        <div class="widget sidebar-events">
-                            <h5>UPCOMING EVENTS</h5>
-                            <ul>
-                                {% for event in events %}
-                                    <li><a href="#"><span><b>{{event.scheduledDate|date('M')}}</b>{{event.scheduledDate|date('d')}}</span>{{event.name}}</a></li>
-                                {#<li><a href="#"><span><b>MARCH</b>17</span>New Year's Brunch at The Grandium</a></li>
-                                <li><a href="#"><span><b>JANUARY</b>12</span>Family Christmas Lunch at The Grandium</a></li>#}
-                                {% else  %}
-                                    <li>No event scheduled</li>
-                                {% endfor%}
-                            </ul>
-                        </div>
-                        <!-- Sidebar Events End -->
-                        <!-- Sidebar Recent -->
-                        <div class="widget sidebar-recent">
-                            <h5>RECENT POSTS</h5>
-                            <ul>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue pharetra diam, eget vestibulum.<span><i class="fa fa-calendar"></i>25 APR 2016 - 18:30</span></a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue pharetra diam, eget vestibulum.<span><i class="fa fa-calendar"></i>17 APR 2016 - 18:30</span></a></li>
-                                <li><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla congue pharetra diam, eget vestibulum.<span><i class="fa fa-calendar"></i>12 APR 2016 - 18:30</span></a></li>
-                            </ul>
-                        </div>
-                        <!-- Sidebar Recent End -->
-                        <!-- Sidebar Tags -->
-                        <div class="widget sidebar-tags">
-                            <h5>TAGS</h5>
-                            <ul>
-                                {% for postKeyword in postKeywords %}
-                                    <li><a href="#"> {{postKeyword.name }} </a></li>
-                                {% else %}
-                                    <li>No keyword available</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <!-- Sidebar Tags End -->
-                        <!-- Sidebar Archive -->
-                        <div class="widget sidebar-archive">
-                            <h5>BLOG ARCHIVE</h5>
-                            <ul>
-                                <li><a href="#">MARCH 2016</a></li>
-                                <li><a href="#">FEBRUARY 2016</a></li>
-                                <li><a href="#">JANUARY 2016</a></li>
-                                <li><a href="#">DECEMBER 2015</a></li>
-                                <li><a href="#">NOVEMBER 2015</a></li>
-                                <li><a href="#">OCTOBER 2015</a></li>
-                            </ul>
-                        </div>
-                        <!-- Sidebar Archive End -->
-                    </div>
-                    <!-- Blog Sidebar End -->
+                    {% include 'hotel/blog-sidebar.html.twig' %}
                 </div>
             </div>
         </div>

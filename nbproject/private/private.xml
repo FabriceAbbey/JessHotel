@@ -3,21 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Entity/Booking.php</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Entity/Event.php</file>
+            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/about-us.html.twig</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Entity/Invoice.php</file>
+            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/blog-sidebar.html.twig</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/admin/blog/index.html.twig</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/admin/blog/newEvent.html.twig</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Form/BookingType.php</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Entity/PostKeyword.php</file>
+            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/contact.html.twig</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Entity/Post.php</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Form/Type/CustomerType.php</file>
+            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/post-view.html.twig</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/blog.html.twig</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/room-detail.hmtl.twig</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Controller/Admin/BlogController.php</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/rooms.html.twig</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/base.html.twig</file>
-            <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Entity/Customer.php</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/src/AppBundle/Controller/BlogController.php</file>
             <file>file:/Applications/XAMPP/htdocs/HotelJess/jesshotel/app/Resources/views/hotel/booking.html.twig</file>
         </group>

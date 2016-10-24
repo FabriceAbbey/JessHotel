@@ -98,6 +98,20 @@ class BlogController extends Controller
         
         return $this->render('hotel/blog.html.twig', array("events" => $events, "categories" => $categories, "posts" => $posts, "postKeywords" => $postkwords));
     }
+    
+    /**
+     * @Route("/blog/post/{id}/", name="hotel_blog_post_view", requirements={"id" : "\d+"})
+     */
+    public function postViewAction($id)
+    {
+        $post = $this->getDoctrine()->getRepository('AppBundle:Post')->find($id);
+        $postkwords = $this->getDoctrine()->getRepository('AppBundle:PostKeyword')->findAll();
+//        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
+        $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
+        
+        return $this->render('hotel/post-view.html.twig', array("post" => $post, "events" => $events, "categories" => $categories, "postKeywords" => $postkwords));
+    }
 
     /**
      * @Route("/booking/", name="hotel_booking")

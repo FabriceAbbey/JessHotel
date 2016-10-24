@@ -32,7 +32,7 @@ class PostKeyword
     private $name;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Post", mappedBy="keywords")
+     * @ORM\ManyToMany(targetEntity="Post", mappedBy="postKeywords")
      */
     private $posts;
    

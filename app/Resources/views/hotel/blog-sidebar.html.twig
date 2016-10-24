@@ -1,0 +1,53 @@
+    {% block blogSidebar %}    
+<!-- Blog Sidebar -->
+                    <div class="widget-blog-sidebar">
+                        <!-- Sidebar Search -->
+                        <div class="widget sidebar-search">
+                            <h5>SEARCH</h5>
+                            <form>
+                                <input type="text" placeholder="ENTER KEYWORDS" required>
+                                <button type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                        <!-- Sidebar Search End -->
+                        <!-- Sidebar Categories -->
+                        <div class="widget sidebar-categories">
+                            <h5>CATEGORIES</h5>
+                            <nav>
+                                <ul>
+                                    {% for category in categories %}
+                                        <li><a href="#">{{ category.name }}</a></li>
+                                    {% else %}
+                                        <li>No categories available</li>
+                                    {% endfor %}
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- Sidebar Categories End -->
+                        <!-- Sidebar Events -->
+                        <div class="widget sidebar-events">
+                            <h5>UPCOMING EVENTS</h5>
+                            <ul>
+                                {% for event in events %}
+                                    <li><a href="#"><span><b>{{event.scheduledDate|date('M')}}</b>{{event.scheduledDate|date('d')}}</span>{{event.name}}</a></li>
+                                {% else  %}
+                                    <li>No event scheduled</li>
+                                {% endfor%}
+                            </ul>
+                        </div>
+                        <!-- Sidebar Events End -->
+                        <!-- Sidebar Tags -->
+                        <div class="widget sidebar-tags">
+                            <h5>TAGS</h5>
+                            <ul>
+                                {% for postKeyword in postKeywords %}
+                                    <li><a href="#"> {{postKeyword.name }} </a></li>
+                                {% else %}
+                                    <li>No keyword available</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!-- Sidebar Tags End -->
+                    </div>
+                    <!-- Blog Sidebar End -->
+                    {% endblock %}

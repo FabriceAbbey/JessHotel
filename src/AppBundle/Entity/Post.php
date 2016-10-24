@@ -288,4 +288,45 @@ class Post
     {
         return $this->category;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->postKeywords = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add postKeyword
+     *
+     * @param \AppBundle\Entity\PostKeyword $postKeyword
+     *
+     * @return Post
+     */
+    public function addPostKeyword(\AppBundle\Entity\PostKeyword $postKeyword)
+    {
+        $this->postKeywords[] = $postKeyword;
+
+        return $this;
+    }
+
+    /**
+     * Remove postKeyword
+     *
+     * @param \AppBundle\Entity\PostKeyword $postKeyword
+     */
+    public function removePostKeyword(\AppBundle\Entity\PostKeyword $postKeyword)
+    {
+        $this->postKeywords->removeElement($postKeyword);
+    }
+
+    /**
+     * Get postKeywords
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPostKeywords()
+    {
+        return $this->postKeywords;
+    }
 }

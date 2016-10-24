@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
- * @ORM\Table(name="Post")
+ * @ORM\Table(name="post")
  *
  * Defines the properties of the User entity to represent the application users.
  * See http://symfony.com/doc/current/book/doctrine.html#creating-an-entity-class
@@ -75,10 +75,10 @@ class Post
      */
     private $publishedAt;
     
-    /* @ORM\ManyToMany(targetEntity="PostKeyword", inversedBy="posts")
-     * @ORM\JoinTable(name="posts_keywords")
+    /** @ORM\ManyToMany(targetEntity="PostKeyword", inversedBy="posts")
+     *  @ORM\JoinTable(name="posts_keywords")
      */
-    private $keywords;
+    private $postKeywords;
     
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="posts")
