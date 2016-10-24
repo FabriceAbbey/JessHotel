@@ -15,6 +15,7 @@ imports:
 parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
     app_locales: en|fr
+    app_currencies: USD|CAD|EUR|GBD|XOF
     app.notifications.email_sender: anonymous@example.com
 
 # Basic configuration for the Symfony framework features
@@ -59,6 +60,7 @@ twig:
         - "form/fields.html.twig"
     globals:
         app_locales: en|fr
+        app_currencies: USD|CAD|EUR|GBD|XOF
 
 # Assetic Configuration (used for managing web assets: CSS, JavaScript, Sass, etc.)
 assetic:

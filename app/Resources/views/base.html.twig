@@ -71,6 +71,13 @@
                                     {% endfor %}
                             </ul>
                         </div>
+                            <div class="header-lang">
+                            <select onchange="currencyConvert(this)">
+                                {% for currency in currencies() %}
+                                    <option value="currency.code" >{{ locale.symbol|capitalize }}</li>
+                                    {% endfor %}
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <!-- Header Top End -->
@@ -214,24 +221,35 @@
             <!-- Custom Scripts -->
             <script src="/assets/js/custom.js"></script>
             <script>
-                    var app = angular.module('hotelApp', []);
-                    app.config(function ($interpolateProvider) {
-                        $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
-                    });
-                    app.controller('hotelController', function ($scope) {
+var app = angular.module('hotelApp', []);
+app.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+});
+app.controller('hotelController', function ($scope, $http) {
 
-                        $scope.dateDifference = function(firstDate, secondDate)
-                        {
-                            var date1 = new Date(firstDate);
-                            var date2 = new Date(secondDate);
-                            var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-                            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    $scope.dateDifference = function (firstDate, secondDate)
+    {
+        var date1 = new Date(firstDate);
+        var date2 = new Date(secondDate);
+        var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+        var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
-                            if(isNaN(diffDays))
-                                diffDays = 0;
-                            return diffDays;
-                        }
-                    });
+        if (isNaN(diffDays))
+            diffDays = 0;
+        return diffDays;
+    }
+
+});
+
+ function convertCurrency(element)
+    {
+        var amount = $("input[name='priceXOF']")[0].value;
+        var baseurl = "{{ app.request.getBaseURL()}}";
+        var local = "{{ app.request.locale }}";
+        $.getJSON(baseurl+ "/" + local + '/currency/convert/' + amount + '/XOF/' + element.value +'/', function(data){
+            $(element).siblings("h3").children(".convertedPrice").html(data.result);
+        });
+    }
             </script>
 
         {% endblock %}

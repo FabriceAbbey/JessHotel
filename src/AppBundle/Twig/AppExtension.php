@@ -13,6 +13,7 @@ namespace AppBundle\Twig;
 
 use AppBundle\Utils\Markdown;
 use Symfony\Component\Intl\Intl;
+use NumberFormatter;
 
 /**
  * This Twig extension adds a new 'md2html' filter to easily transform Markdown
@@ -28,6 +29,7 @@ use Symfony\Component\Intl\Intl;
  */
 class AppExtension extends \Twig_Extension
 {
+
     /**
      * @var Markdown
      */
@@ -37,11 +39,13 @@ class AppExtension extends \Twig_Extension
      * @var array
      */
     private $locales;
+    private $currencies;
 
-    public function __construct(Markdown $parser, $locales)
+    public function __construct(Markdown $parser, $locales, $currencies)
     {
         $this->parser = $parser;
         $this->locales = $locales;
+        $this->currencies = $currencies;
     }
 
     /**
@@ -61,6 +65,7 @@ class AppExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
+             new \Twig_SimpleFunction('currencies', [$this, 'getCurrencies']),
         ];
     }
 
@@ -95,6 +100,34 @@ class AppExtension extends \Twig_Extension
         return $locales;
     }
 
+    public function getCurrencySymbol($currency)
+    {
+        $locale = 'en'; //browser or user locale
+        $fmt = new NumberFormatter($locale . "@currency=$currency", NumberFormatter::CURRENCY);
+        $symbol = $fmt->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
+        header("Content-Type: text/html; charset=UTF-8;");
+        echo $symbol;
+    }
+    
+     /**
+     * Takes the list of codes of the locales (languages) enabled in the
+     * application and returns an array with the name of each locale written
+     * in its own language (e.g. English, Français, Español, etc.)
+     *
+     * @return array
+     */
+    public function getCurrencies()
+    {
+        $appCurrencies = explode('|', $this->currencies);
+
+        $currencies = [];
+        foreach ($appCurrencies as $currency) {
+            $currencies[] = ['code' => $currency, 'symbol' => $this->getCurrencySymbol($currency)];
+        }
+
+        return $currencies;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -104,4 +137,5 @@ class AppExtension extends \Twig_Extension
         // using 'app.extension' if you only have one Twig extension in your application.
         return 'app.extension';
     }
+
 }

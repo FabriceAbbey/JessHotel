@@ -36,12 +36,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class BlogController extends Controller
 {
+
     /**
      * @Route("/", name="hotel_index")
      */
     public function indexAction()
     {
-        return $this->render('hotel/index.html.twig');
+        $rooms = $this->getDoctrine()->getRepository('AppBundle:Room')->findAll();
+        $services = $this->getDoctrine()->getRepository('AppBundle:Service')->findAll();
+        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+
+        return $this->render('hotel/index.html.twig', ["rooms" => $rooms, "services" => $services, "posts" => $posts,]);
     }
 
     /**
@@ -50,18 +55,16 @@ class BlogController extends Controller
      */
     public function roomsAction($page)
     {
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AppBundle:Room a";
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM AppBundle:Room a";
         $query = $em->createQuery($dql);
-        
-        $paginator  = $this->get('knp_paginator');
+
+        $paginator = $this->get('knp_paginator');
         $rooms = $paginator->paginate(
-        $query, /* query NOT result */
-        $page/*page number*/,
-        Room::NUM_ITEMS/*limit per page*/
+                $query, /* query NOT result */ $page/* page number */, Room::NUM_ITEMS/* limit per page */
         );
-             
-        return $this->render('hotel/rooms.html.twig', array("rooms" => $rooms, "page" =>  $page));
+
+        return $this->render('hotel/rooms.html.twig', array("rooms" => $rooms, "page" => $page));
     }
 
     /**
@@ -70,7 +73,7 @@ class BlogController extends Controller
     public function roomDetailAction($id)
     {
         $room = $this->getDoctrine()->getRepository('AppBundle:Room')->find($id);
-        
+
         return $this->render('hotel/room-detail.hmtl.twig', array('room' => $room));
     }
 
@@ -80,25 +83,23 @@ class BlogController extends Controller
      */
     public function blogAction($page)
     {
-        $em    = $this->get('doctrine.orm.entity_manager');
-        $dql   = "SELECT a FROM AppBundle:Post a";
+        $em = $this->get('doctrine.orm.entity_manager');
+        $dql = "SELECT a FROM AppBundle:Post a";
         $query = $em->createQuery($dql);
-        
-        $paginator  = $this->get('knp_paginator');
+
+        $paginator = $this->get('knp_paginator');
         $posts = $paginator->paginate(
-        $query, /* query NOT result */ 
-        $page/*page number*/,
-        Post::NUM_ITEMS/*limit per page*/
+                $query, /* query NOT result */ $page/* page number */, Post::NUM_ITEMS/* limit per page */
         );
-        
+
         $postkwords = $this->getDoctrine()->getRepository('AppBundle:PostKeyword')->findAll();
 //        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
         $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
-        
+
         return $this->render('hotel/blog.html.twig', array("events" => $events, "categories" => $categories, "posts" => $posts, "postKeywords" => $postkwords));
     }
-    
+
     /**
      * @Route("/blog/post/{id}/", name="hotel_blog_post_view", requirements={"id" : "\d+"})
      */
@@ -109,8 +110,20 @@ class BlogController extends Controller
 //        $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
         $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
         $events = $this->getDoctrine()->getRepository('AppBundle:Event')->findAll();
-        
+
         return $this->render('hotel/post-view.html.twig', array("post" => $post, "events" => $events, "categories" => $categories, "postKeywords" => $postkwords));
+    }
+    
+     /**
+     * @Route("/currency/convert/{amount}/{from}/{to}/", name="hotel_currency_convert", requirements={"amount" : "\d+", "from" : "\w+", "to" : "\w+"})
+     */
+    function convertCurrencyAction($amount, $from, $to)
+    {
+        $url = "https://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
+        $data = file_get_contents($url);
+        preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
+        $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+        return new JsonResponse( array("result" => round($converted, 3)));
     }
 
     /**
@@ -119,25 +132,25 @@ class BlogController extends Controller
     public function bookingAction(Request $request)
     {
         $booking = new Booking();
-       
+
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(BookingType::class, $booking)
                 ->add('saveAndCreateNew', SubmitType::class);
 
         $form->handleRequest($request);
-        
+
         // the isSubmitted() method is completely optional because the other
         // isValid() method already checks whether the form is submitted.
         // However, we explicitly add it to improve code readability.
         // See http://symfony.com/doc/current/best_practices/forms.html#handling-form-submits
         if ($form->isSubmitted() && $form->isValid()) {
-          
+
             $booking->setBookingId($this->generateReservationId());
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($booking);
             $entityManager->flush();
-            
+
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
             // as they are accessed.
@@ -149,9 +162,9 @@ class BlogController extends Controller
             }
 
             return $this->redirectToRoute('hotel_booking');
-        } 
-        
-         
+        }
+
+
         return $this->render('hotel/booking.html.twig', [
                     'booking' => $booking,
                     'form' => $form->createView(),
@@ -159,17 +172,17 @@ class BlogController extends Controller
 
 //        return $this->render('hotel/booking.html.twig', array('reservation' => $randomString));
     }
-    
-    public function generateReservationId() 
+
+    public function generateReservationId()
     {
-          $length = 10;
+        $length = 10;
         $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
     /**
@@ -209,7 +222,6 @@ class BlogController extends Controller
         return $this->render('hotel/contact.html.twig');
     }
 
-    
     /**
      * @Route("/contact/send-mail", name="fes_send_mail")
      */
@@ -220,7 +232,7 @@ class BlogController extends Controller
         $name = $_POST['name'];
         $message = $_POST['message'];
         $headers = 'From: info@fasoenergysolutions.com' . "\r\n" .
-     'Reply-To: info@fasoenergysolutions.com' . "\r\n" ;
+                'Reply-To: info@fasoenergysolutions.com' . "\r\n";
 
         $template = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -292,7 +304,7 @@ class BlogController extends Controller
 <table>
 <tr>
 <th>
-<h1>Hi, '. $name . '</h1>
+<h1>Hi, ' . $name . '</h1>
 <p class="lead">Chez Faso Energy Solutions, la satisfaction de nos clients est l\'une de nos plus grande priorité.  </p>
 
 <table class="callout">
@@ -415,13 +427,12 @@ class BlogController extends Controller
         mail('fabriceabbey@gmail.com', 'contact', $template, $headers);
 
         $headers = 'From: ' . $email . "\r\n" .
-        'Reply-To: ' . $email  . "\r\n" ;
+                'Reply-To: ' . $email . "\r\n";
 
         mail('fabriceabbey@gmail.com', 'contact', $message, $headers);
 
         return new JsonResponse(array("message" => "Mail sent"));
     }
-
 
     /**
      * @Route("/posts/{slug}", name="blog_post")
@@ -467,8 +478,8 @@ class BlogController extends Controller
         }
 
         return $this->render('blog/comment_form_error.html.twig', array(
-            'post' => $post,
-            'form' => $form->createView(),
+                    'post' => $post,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -489,8 +500,9 @@ class BlogController extends Controller
         $form = $this->createForm(new CommentType());
 
         return $this->render('blog/_comment_form.html.twig', array(
-            'post' => $post,
-            'form' => $form->createView(),
+                    'post' => $post,
+                    'form' => $form->createView(),
         ));
     }
+
 }
