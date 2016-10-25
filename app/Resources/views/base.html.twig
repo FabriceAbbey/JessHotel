@@ -72,9 +72,9 @@
                             </ul>
                         </div>
                             <div class="header-lang">
-                            <select onchange="currencyConvert(this)">
+                            <select class="currency_select" onchange="convertCurrency(this)">
                                 {% for currency in currencies() %}
-                                    <option value="currency.code" >{{ locale.symbol|capitalize }}</li>
+                                    <option value="{{currency.code}}" {% if currency.code == app.session.get('currency') %} selected="selected" {% endif %} >{{ currency.symbol}}</li>
                                     {% endfor %}
                             </select>
                         </div>
@@ -243,12 +243,19 @@ app.controller('hotelController', function ($scope, $http) {
 
  function convertCurrency(element)
     {
-        var amount = $("input[name='priceXOF']")[0].value;
+        
         var baseurl = "{{ app.request.getBaseURL()}}";
         var local = "{{ app.request.locale }}";
-        $.getJSON(baseurl+ "/" + local + '/currency/convert/' + amount + '/XOF/' + element.value +'/', function(data){
-            $(element).siblings("h3").children(".convertedPrice").html(data.result);
-        });
+        $("input[name='priceXOF']").each(function() {
+            var input = this;
+            if(element.value != "XOF") {
+                $.getJSON(baseurl+ "/" + local + '/currency/convert/' + this.value + '/XOF/' + element.value +'/', function(data){
+                    $(input).siblings(".convertedPrice").html($(element).children(":selected").text() + " " + data.result);
+                });
+            } else {
+                $(input).siblings(".convertedPrice").html($(element).children(":selected").text() + " " + input.value);
+            }
+         });
     }
             </script>
 

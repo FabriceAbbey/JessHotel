@@ -52,8 +52,8 @@
                                 <div class="item-price">
                                     <div class="price-inner">
                                         <i class="fa fa-star"></i>
-                                        <h3>$ {{room.price}}</h3>
-                                        <h4>$ 180.00</h4>
+                                        <h3><span class="convertedPrice">{{app.session.get('currency')|currencysymbol}} {{room.price|convertcurrency}}</span><input type="hidden" value="{{room.price}}" name="priceXOF"></h3>
+{#                                        <h4>$ 180.00</h4>#}
                                         <h5>PER NIGHT</h5>
                                         <a href="{{path('hotel_room_detail', {'id': room.id}) }}" class="btn">ROOM DETAIL</a>
                                     </div>

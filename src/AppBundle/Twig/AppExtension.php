@@ -13,7 +13,8 @@ namespace AppBundle\Twig;
 
 use AppBundle\Utils\Markdown;
 use Symfony\Component\Intl\Intl;
-use NumberFormatter;
+use \NumberFormatter;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * This Twig extension adds a new 'md2html' filter to easily transform Markdown
@@ -40,12 +41,14 @@ class AppExtension extends \Twig_Extension
      */
     private $locales;
     private $currencies;
+    private $session;
 
-    public function __construct(Markdown $parser, $locales, $currencies)
+    public function __construct(Markdown $parser, $locales, $currencies, $session)
     {
         $this->parser = $parser;
         $this->locales = $locales;
         $this->currencies = $currencies;
+        $this->session = $session;
     }
 
     /**
@@ -55,6 +58,8 @@ class AppExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFilter('md2html', [$this, 'markdownToHtml'], ['is_safe' => ['html']]),
+            new \Twig_SimpleFilter("convertcurrency", [$this, 'convertCurrency']),
+              new \Twig_SimpleFilter("currencysymbol", [$this, 'getCurrencySymbol'])
         ];
     }
 
@@ -65,7 +70,7 @@ class AppExtension extends \Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('locales', [$this, 'getLocales']),
-             new \Twig_SimpleFunction('currencies', [$this, 'getCurrencies']),
+            new \Twig_SimpleFunction('currencies', [$this, 'getCurrencies']),
         ];
     }
 
@@ -103,13 +108,25 @@ class AppExtension extends \Twig_Extension
     public function getCurrencySymbol($currency)
     {
         $locale = 'en'; //browser or user locale
-        $fmt = new NumberFormatter($locale . "@currency=$currency", NumberFormatter::CURRENCY);
-        $symbol = $fmt->getSymbol(NumberFormatter::CURRENCY_SYMBOL);
-        header("Content-Type: text/html; charset=UTF-8;");
-        echo $symbol;
+        $formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
+        // Prevent any extra spaces, etc. in formatted currency
+//        $formatter->setPattern('¤');
+
+        // Prevent significant digits (e.g. cents) in formatted currency
+        $formatter->setAttribute(NumberFormatter::ROUNDING_MODE, 0);
+
+        // Get the formatted price for '0'
+        $formattedPrice = $formatter->formatCurrency(0, $currency);
+
+        // Strip out the zero digit to get the currency symbol
+        $zero = $formatter->getSymbol(NumberFormatter::ZERO_DIGIT_SYMBOL);
+        $currencySymbol = str_replace($zero, '', $formattedPrice);
+        $symbol = str_replace('.', '', $currencySymbol);
+        
+        return $symbol;
     }
-    
-     /**
+
+    /**
      * Takes the list of codes of the locales (languages) enabled in the
      * application and returns an array with the name of each locale written
      * in its own language (e.g. English, Français, Español, etc.)
@@ -127,7 +144,17 @@ class AppExtension extends \Twig_Extension
 
         return $currencies;
     }
-
+    
+    public function convertCurrency($amount)
+    {
+         $url = "https://www.google.com/finance/converter?a=$amount&from=XOF&to=" . $this->session->get('currency');
+        $data = file_get_contents($url);
+        preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
+        $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+       
+        return  round($converted, 3);
+    }
+    
     /**
      * {@inheritdoc}
      */

@@ -123,6 +123,7 @@ class BlogController extends Controller
         $data = file_get_contents($url);
         preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
         $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+        $this->get("session")->set('currency', $to);
         return new JsonResponse( array("result" => round($converted, 3)));
     }
 

@@ -38,7 +38,7 @@
                         <div class="col-md-8">
                             <!-- Room Slider -->
                             <div class="room-slider">
-                                <div class="room-price">{{ room.price }}<small>PER NIGHT</small></div>
+                                <div class="room-price"><span class="convertedPrice">{{app.session.get('currency')|currencysymbol}} {{room.price|convertcurrency}}</span><input type="hidden" value="{{room.price}}" name="priceXOF"><small>PER NIGHT</small></div>
                                 <div class="owl-carousel owl-theme owl-type1">
                                     {% for pic in room.pictures %}
                                     <a href="{{ pic }}" data-background="{{ pic }}" title="{{ room.name }}" class="popup-gallery"></a>
@@ -106,7 +106,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <button type="submit" class="btn">BOOK NOW THIS ROOM</button>
+                                                <button type="submit" class="btn">BOOK THIS ROOM</button>
                                             </div>
                                         </div>
                                     </form>

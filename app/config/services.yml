@@ -12,7 +12,7 @@ services:
     app.twig.app_extension:
         public:    false
         class:     AppBundle\Twig\AppExtension
-        arguments: ['@markdown', '%app_locales%', '%app_currencies%' ]
+        arguments: ['@markdown', '%app_locales%', '%app_currencies%' ,  "@session"]
         tags:
             - { name: twig.extension }
 
