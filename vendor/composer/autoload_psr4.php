@@ -29,6 +29,7 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'Patchwork\\' => array($vendorDir . '/patchwork/jsqueeze/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Lexik\\Bundle\\TranslationBundle\\' => array($vendorDir . '/lexik/translation-bundle'),
     'Leafo\\ScssPhp\\' => array($vendorDir . '/leafo/scssphp/src'),
     'Knp\\Bundle\\SnappyBundle\\' => array($vendorDir . '/knplabs/knp-snappy-bundle'),
     'Knp\\Bundle\\PaginatorBundle\\' => array($vendorDir . '/knplabs/knp-paginator-bundle'),

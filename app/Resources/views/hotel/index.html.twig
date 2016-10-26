@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="item-desc">
                                             <h2><a href="rooms-detail.html">{{room.name}}</a></h2>
-                                           <h3><span class="convertedPrice">{{room.price}}</span><input type="hidden" value="{{room.price}}" name="priceXOF"></h3>
+                                           <h3><span class="convertedPrice">{{app.session.get('currency')|currencysymbol}} {{room.price|convertcurrency}}</span><input type="hidden" value="{{room.price}}" name="priceXOF"></h3>
                                             <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
                                             <i class="fa fa-star"></i>
                                         </div>
