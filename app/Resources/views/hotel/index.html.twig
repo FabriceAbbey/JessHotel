@@ -27,16 +27,16 @@
                             <div class="slider-item" data-background="/assets/img/photo-slide-1.jpg">
                                 <div class="wrapper">
                                     <div class="item-inner">
-                                        <h5>WELCOME TO THE GRANDIUM</h5>
+                                        <h5>WELCOME TO JESS HOUSE</h5>
                                         <h1>Experience the Freedom</h1>
-                                        <h2>in London</h2>
+                                        <h2>in Lome</h2>
                                     </div>
                                 </div>
                             </div>
                             <div class="slider-item" data-background="/assets/img/photo-slide-2.jpg">
                                 <div class="wrapper">
                                     <div class="item-inner">
-                                        <h5>WELCOME TO THE GRANDIUM</h5>
+                                        <h5>WELCOME TO JESS HOUSE</h5>
                                         <h1>A Place to Relax</h1>
                                         <h2>in Maldives</h2>
                                     </div>
@@ -45,7 +45,7 @@
                             <div class="slider-item" data-background="/assets/img/photo-slide-3.jpg">
                                 <div class="wrapper">
                                     <div class="item-inner">
-                                        <h5>WELCOME TO THE GRANDIUM</h5>
+                                        <h5>WELCOME TO JESS HOUSE</h5>
                                         <h1>Touch The Sea</h1>
                                         <h2>in Monaco</h2>
                                     </div>
@@ -111,71 +111,73 @@
                         <!-- Rooms Title End -->
                         <!-- Rooms Carousel -->
                         <div class="widget-carousel owl-carousel owl-theme">
-                            <div class="rooms-item">
-                                <div class="item-inner">
-                                    <div class="item-photo">
-                                        <a href="rooms-detail.html" data-background="/assets/img/photo-room-1.jpg"></a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <h2><a href="rooms-detail.html">Single Room</a></h2>
-                                        <h3>$ 160.00</h3>
-                                        <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rooms-item">
-                                <div class="item-inner">
-                                    <div class="item-photo">
-                                        <a href="rooms-detail.html" data-background="/assets/img/photo-room-2.jpg"></a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <h2><a href="rooms-detail.html">Double Room</a></h2>
-                                        <h3>$ 300.00</h3>
-                                        <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
-                                        <i class="fa fa-star"></i>
+                            {% for room in rooms %}
+                                <div class="rooms-item">
+                                    <div class="item-inner">
+                                        <div class="item-photo">
+                                            <a href="rooms-detail.html" data-background="/assets/img/photo-room-1.jpg"></a>
+                                        </div>
+                                        <div class="item-desc">
+                                            <h2><a href="rooms-detail.html">{{room.name}}</a></h2>
+                                           <h3><span class="convertedPrice">{{app.session.get('currency')|currencysymbol}} {{room.price|convertcurrency}}</span><input type="hidden" value="{{room.price}}" name="priceXOF"></h3>
+                                            <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
+                                            <i class="fa fa-star"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="rooms-item">
-                                <div class="item-inner">
-                                    <div class="item-photo">
-                                        <a href="rooms-detail.html" data-background="/assets/img/photo-room-3.jpg"></a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <h2><a href="rooms-detail.html">Deluxe Single Room</a></h2>
-                                        <h3>$ 420.00</h3>
-                                        <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rooms-item">
-                                <div class="item-inner">
-                                    <div class="item-photo">
-                                        <a href="rooms-detail.html" data-background="/assets/img/photo-room-4.jpg"></a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <h2><a href="rooms-detail.html">Deluxe Double Room</a></h2>
-                                        <h3>$ 540.00</h3>
-                                        <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="rooms-item">
-                                <div class="item-inner">
-                                    <div class="item-photo">
-                                        <a href="rooms-detail.html" data-background="/assets/img/photo-room-5.jpg"></a>
-                                    </div>
-                                    <div class="item-desc">
-                                        <h2><a href="rooms-detail.html">Royal Suit Room</a></h2>
-                                        <h3>$ 680.00</h3>
-                                        <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
+                            {#  <div class="rooms-item">
+                                  <div class="item-inner">
+                                      <div class="item-photo">
+                                          <a href="rooms-detail.html" data-background="/assets/img/photo-room-2.jpg"></a>
+                                      </div>
+                                      <div class="item-desc">
+                                          <h2><a href="rooms-detail.html">Double Room</a></h2>
+                                          <h3>$ 300.00</h3>
+                                          <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
+                                          <i class="fa fa-star"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="rooms-item">
+                                  <div class="item-inner">
+                                      <div class="item-photo">
+                                          <a href="rooms-detail.html" data-background="/assets/img/photo-room-3.jpg"></a>
+                                      </div>
+                                      <div class="item-desc">
+                                          <h2><a href="rooms-detail.html">Deluxe Single Room</a></h2>
+                                          <h3>$ 420.00</h3>
+                                          <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
+                                          <i class="fa fa-star"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="rooms-item">
+                                  <div class="item-inner">
+                                      <div class="item-photo">
+                                          <a href="rooms-detail.html" data-background="/assets/img/photo-room-4.jpg"></a>
+                                      </div>
+                                      <div class="item-desc">
+                                          <h2><a href="rooms-detail.html">Deluxe Double Room</a></h2>
+                                          <h3>$ 540.00</h3>
+                                          <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
+                                          <i class="fa fa-star"></i>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="rooms-item">
+                                  <div class="item-inner">
+                                      <div class="item-photo">
+                                          <a href="rooms-detail.html" data-background="/assets/img/photo-room-5.jpg"></a>
+                                      </div>
+                                      <div class="item-desc">
+                                          <h2><a href="rooms-detail.html">Royal Suit Room</a></h2>
+                                          <h3>$ 680.00</h3>
+                                          <p>Sed fermentum eleifend dui eu faucibus. Donec facilisis, ligula eu interdum luctus nunc massa fermentum</p>
+                                          <i class="fa fa-star"></i>
+                                      </div>
+                                  </div>
+                              </div>#}
                         </div>
                         <!-- Rooms Carousel End -->
                     </div>
@@ -217,15 +219,17 @@
                         <!-- Features Content -->
                         <div class="widget-inner">
                             <div class="row">
-                                <div class="col-lg-4 col-sm-6">
-                                    <div class="features-item" data-background="/assets/img/photo-services-1-2.jpg">
-                                        <a href="#">
-                                            <h3>Sky Bar &amp; Lounge</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta.</p>
-                                        </a>
+                                {% for service in services %} 
+                                    <div class="col-lg-4 col-sm-6">
+                                        <div class="features-item" data-background="/assets/img/photo-services-1-2.jpg">
+                                            <a href="#">
+                                                <h3>{{service.name}}</h3>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta.</p>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
+                                {% endfor %}
+                                {#<div class="col-lg-4 col-sm-6">
                                     <div class="features-item" data-background="/assets/img/photo-services-2-1.jpg">
                                         <a href="#">
                                             <h3>Private Dining</h3>
@@ -264,7 +268,7 @@
                                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta.</p>
                                         </a>
                                     </div>
-                                </div>
+                                </div>#}
                             </div>
                         </div>
                         <!-- Features Content End -->
@@ -615,8 +619,8 @@
         <!-- Site Main End -->
     {% endblock %}
 
-{# {% block sidebar %}
-    {{ parent() }}
-
-    {{ show_source_code(_self) }}
-{% endblock %} #}
+    {# {% block sidebar %}
+        {{ parent() }}
+    
+        {{ show_source_code(_self) }}
+    {% endblock %} #}

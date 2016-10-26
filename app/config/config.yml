@@ -15,6 +15,7 @@ imports:
 parameters:
     # This parameter defines the codes of the locales (languages) enabled in the application
     app_locales: en|fr
+    app_currencies: USD|CAD|EUR|GBP|XOF
     app.notifications.email_sender: anonymous@example.com
 
 # Basic configuration for the Symfony framework features
@@ -59,6 +60,7 @@ twig:
         - "form/fields.html.twig"
     globals:
         app_locales: en|fr
+        app_currencies: USD|CAD|EUR|GBP|XOF
 
 # Assetic Configuration (used for managing web assets: CSS, JavaScript, Sass, etc.)
 assetic:
@@ -103,3 +105,18 @@ swiftmailer:
 knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+       
+lexik_translation:
+    fallback_locale: [en]         # (required) default locale(s) to use
+    managed_locales: [en, fr]
+    base_layout: "LexikTranslationBundle::layout.html.twig"
+    grid_input_type: text       # text|textarea
+    grid_toggle_similar: false
+    resources_registration:
+        type:                 all  # all | files | database
+        managed_locales_only: true
+    auto_cache_clean: false
+    auto_cache_clean_interval: 600
+    storage:
+        type: orm                  # orm | mongodb | propel
+#        object_manager: something

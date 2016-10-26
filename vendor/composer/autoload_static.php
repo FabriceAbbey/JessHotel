@@ -56,6 +56,7 @@ class ComposerStaticInitfe11ff6b82a996417f83b4f9122e5007
         ),
         'L' => 
         array (
+            'Lexik\\Bundle\\TranslationBundle\\' => 31,
             'Leafo\\ScssPhp\\' => 14,
         ),
         'K' => 
@@ -170,6 +171,10 @@ class ComposerStaticInitfe11ff6b82a996417f83b4f9122e5007
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Lexik\\Bundle\\TranslationBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lexik/translation-bundle',
         ),
         'Leafo\\ScssPhp\\' => 
         array (
