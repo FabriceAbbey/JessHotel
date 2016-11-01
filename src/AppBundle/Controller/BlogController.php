@@ -45,8 +45,9 @@ class BlogController extends Controller
         $rooms = $this->getDoctrine()->getRepository('AppBundle:Room')->findAll();
         $services = $this->getDoctrine()->getRepository('AppBundle:Service')->findAll();
         $posts = $this->getDoctrine()->getRepository('AppBundle:Post')->findAll();
+        $offers = $this->getDoctrine()->getRepository('AppBundle:Offer')->findAll();
 
-        return $this->render('hotel/index.html.twig', ["rooms" => $rooms, "services" => $services, "posts" => $posts,]);
+        return $this->render('hotel/index.html.twig', ["rooms" => $rooms, "services" => $services, "posts" => $posts, "offers" => $offers]);
     }
 
     /**
@@ -126,13 +127,28 @@ class BlogController extends Controller
         $this->get("session")->set('currency', $to);
         return new JsonResponse( array("result" => round($converted, 3)));
     }
+    
+     /**
+     * @Route("/blog/booking/view/{bookingnumber}/", name="hotel_booking_view")
+     */
+    public function bookingViewAction($bookingnumber)
+    {
+      $post = $this->getDoctrine()->getRepository('AppBundle:Post')->findOneBy(['bookingId' => $bookingnumber]);
+      
+      return $this->render($view);
+    }
 
     /**
      * @Route("/booking/", name="hotel_booking")
      */
     public function bookingAction(Request $request)
     {
-        $booking = new Booking();
+        if($request->getMethod() == "GET") {
+            $booking = new Booking();
+        } else  if($request->getMethod() == "POST" && $request->request->get('reservationid') !== NULL ) {
+            $bookingnumber = $request->request->get('reservationid');
+            $booking = $this->getDoctrine()->getRepository('AppBundle:Booking')->findOneBy(['booking_id' => $bookingnumber]);
+        }
 
         // See http://symfony.com/doc/current/book/forms.html#submitting-forms-with-multiple-buttons
         $form = $this->createForm(BookingType::class, $booking)
@@ -435,75 +451,5 @@ class BlogController extends Controller
         return new JsonResponse(array("message" => "Mail sent"));
     }
 
-    /**
-     * @Route("/posts/{slug}", name="blog_post")
-     *
-     * NOTE: The $post controller argument is automatically injected by Symfony
-     * after performing a database query looking for a Post with the 'slug'
-     * value given in the route.
-     * See http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html
-     */
-    public function postShowAction(Post $post)
-    {
-        return $this->render('blog/post_show.html.twig', array('post' => $post));
-    }
-
-    /**
-     * @Route("/comment/{postSlug}/new", name = "comment_new")
-     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
-     *
-     * @Method("POST")
-     * @ParamConverter("post", options={"mapping": {"postSlug": "slug"}})
-     *
-     * NOTE: The ParamConverter mapping is required because the route parameter
-     * (postSlug) doesn't match any of the Doctrine entity properties (slug).
-     * See http://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
-     */
-    public function commentNewAction(Request $request, Post $post)
-    {
-        $form = $this->createForm(new CommentType());
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Comment $comment */
-            $comment = $form->getData();
-            $comment->setAuthorEmail($this->getUser()->getEmail());
-            $comment->setPost($post);
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($comment);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('blog_post', array('slug' => $post->getSlug()));
-        }
-
-        return $this->render('blog/comment_form_error.html.twig', array(
-                    'post' => $post,
-                    'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * This controller is called directly via the render() function in the
-     * blog/post_show.html.twig template. That's why it's not needed to define
-     * a route name for it.
-     *
-     * The "id" of the Post is passed in and then turned into a Post object
-     * automatically by the ParamConverter.
-     *
-     * @param Post $post
-     *
-     * @return Response
-     */
-    public function commentFormAction(Post $post)
-    {
-        $form = $this->createForm(new CommentType());
-
-        return $this->render('blog/_comment_form.html.twig', array(
-                    'post' => $post,
-                    'form' => $form->createView(),
-        ));
-    }
-
+    
 }
