@@ -74,7 +74,7 @@
                             <div class="header-lang">
                             <select class="currency_select" onchange="convertCurrency(this)">
                                 {% for currency in currencies() %}
-                                    <option value="{{currency.code}}" {% if currency.code == app.session.get('currency') %} selected="selected" {% endif %} >{{ currency.symbol}}</li>
+                                    <option value="{{currency.code}}" {% if currency.code == app.session.get('currency')  or ( not(app.session.get('currency') ) and currency.code == 'XOF')%} selected="selected" {% endif %} >{{ currency.symbol}}</li>
                                     {% endfor %}
                             </select>
                         </div>

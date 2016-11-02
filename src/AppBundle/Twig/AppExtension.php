@@ -59,7 +59,7 @@ class AppExtension extends \Twig_Extension
         return [
             new \Twig_SimpleFilter('md2html', [$this, 'markdownToHtml'], ['is_safe' => ['html']]),
             new \Twig_SimpleFilter("convertcurrency", [$this, 'convertCurrency']),
-              new \Twig_SimpleFilter("currencysymbol", [$this, 'getCurrencySymbol'])
+            new \Twig_SimpleFilter("currencysymbol", [$this, 'getCurrencySymbol'])
         ];
     }
 
@@ -106,12 +106,12 @@ class AppExtension extends \Twig_Extension
     }
 
     public function getCurrencySymbol($currency)
-    {
+    { 
+        if($currency) {
         $locale = 'en'; //browser or user locale
         $formatter = new NumberFormatter($locale, NumberFormatter::CURRENCY);
         // Prevent any extra spaces, etc. in formatted currency
 //        $formatter->setPattern('¤');
-
         // Prevent significant digits (e.g. cents) in formatted currency
         $formatter->setAttribute(NumberFormatter::ROUNDING_MODE, 0);
 
@@ -124,6 +124,9 @@ class AppExtension extends \Twig_Extension
         $symbol = str_replace('.', '', $currencySymbol);
         
         return $symbol;
+        } else {
+            return "CFA";
+        }
     }
 
     /**
@@ -144,17 +147,22 @@ class AppExtension extends \Twig_Extension
 
         return $currencies;
     }
-    
+
     public function convertCurrency($amount)
     {
-         $url = "https://www.google.com/finance/converter?a=$amount&from=XOF&to=" . $this->session->get('currency');
-        $data = file_get_contents($url);
-        preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
-        $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
-       
-        return  round($converted, 3);
+//        print_r(isset($this->session->get('currency')));die();
+        if ($this->session->get('currency') !== NULL) {
+            $url = "https://www.google.com/finance/converter?a=$amount&from=XOF&to=" . $this->session->get('currency');
+            $data = file_get_contents($url);
+            preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
+            $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+
+            return round($converted, 3);
+        } else {
+            return $amount;
+        }
     }
-    
+
     /**
      * {@inheritdoc}
      */

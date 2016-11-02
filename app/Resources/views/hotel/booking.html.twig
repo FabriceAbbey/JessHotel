@@ -14,6 +14,12 @@
                         <h5>STAY THE GRANDIUM</h5>
                         <h1>Booking</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eget commodo orci. Integer varius nibh eu mattis porta. Pellentesque dictum sem eget cursus semper. Nullam quis blandit lorem. Morbi blandit orci urna, eu congue magna faucibus at. In bibendum in mauris nec ultrices. Nunc et magna velit.</p>
+
+                        <form method="post" action="{{path('hotel_booking')}}">
+                            <span> Reservation ID: </span>
+                            <input name="reservationid" type="text">
+                            <input type="submit" value="Check">
+                        </form>
                         <!-- Title Emd -->
                         <!-- Breadcrumb -->
                         <div class="widget-breadcrumb">
@@ -52,8 +58,13 @@
                                         <div class="data-form">
                                             {{ form_start(form) }}
                                             {{ form_errors(form) }}
-                                            <input type="hidden" name="form-room" value="Royal Single Room">
+
                                             <div class="row">
+                                                {% if form.vars.value.bookingId is not null %}
+                                                    <div class="col-md-12">
+                                                        <span><b>Reservation Id:</b> {{form.vars.value.bookingId}}</span>
+                                                    </div>
+                                                {% endif %}
                                                 <div class="col-md-6">
                                                     {#<i class="fa fa-calendar-plus-o"></i>#}
                                                     {{ form_widget(form.checkinDate, { 'attr': {'name': 'form-checkin', 'id': 'form-checkin', 'class': 'datepicker', 'placeholder': 'CHECK IN', 'ng-model' : 'checkinDate'} }) }}
@@ -105,13 +116,17 @@
                                                     <span></span>
                                                 </div>
 
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     {{ form_widget(form.submit, { 'label': 'Book now' }) }}
                                                 </div>
 
                                                 {% if app.user and is_granted('ROLE_ADMIN') %}
                                                     <div class="col-md-6">
                                                         {{ form_widget(form.saveAndCreateNew, { 'label': 'Book now'}) }}
+                                                    </div>
+                                                {% else %}
+                                                    <div class="col-md-6">
+                                                        {{ form_widget(form.saveAndCreateNew, { 'label': 'Book now', 'attr': {'class': 'hidden'} }) }}
                                                     </div>
                                                 {% endif %}
                                             </div>

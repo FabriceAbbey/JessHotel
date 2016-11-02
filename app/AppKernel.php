@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Lexik\Bundle\TranslationBundle\LexikTranslationBundle(),
+            new Faboulos\MailerBundle\FaboulosMailerBundle(),
         ];
 
         // Some bundles are only used while developing the application or during
